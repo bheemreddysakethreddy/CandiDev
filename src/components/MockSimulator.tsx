@@ -1,0 +1,993 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import {
+  Play,
+  Pause,
+  RotateCcw,
+  CheckCircle,
+  AlertCircle,
+  Video,
+  Mic,
+  MicOff,
+  Clock,
+  Terminal,
+  FileCode,
+  CheckCheck,
+  Send,
+  Sparkles,
+  Award,
+  ChevronDown,
+  User,
+  ExternalLink,
+} from 'lucide-react';
+import { SIMULATOR_QUESTIONS, SimulatorQuestion, Student } from '@/data/mockData';
+
+interface MockSimulatorProps {
+  onOpenScorecard: (student: Student) => void;
+}
+
+export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
+  const [selectedQuestionIndex, setSelectedQuestionIndex] = useState(0);
+  const [selectedLanguage, setSelectedLanguage] = useState<'javascript' | 'python' | 'java'>('javascript');
+  const [code, setCode] = useState('');
+  const [isRunningTests, setIsRunningTests] = useState(false);
+  const [testOutput, setTestOutput] = useState<string | null>(null);
+  const [testStatus, setTestStatus] = useState<'idle' | 'success' | 'failed'>('idle');
+
+  // Timer state
+  const [secondsLeft, setSecondsLeft] = useState(45 * 60);
+  const [isTimerRunning, setIsTimerRunning] = useState(true);
+
+  // Rubric Scores
+  const [rubricScores, setRubricScores] = useState({
+    algo: 23,
+    edgeCases: 18,
+    codeHygiene: 24,
+    communication: 27,
+  });
+
+  // Timestamped Interviewer Notes
+  const [notes, setNotes] = useState<Array<{ time: string; text: string; author: string }>>([
+    {
+      time: '04:15',
+      text: 'Candidate clearly framed problem requirements and asked whether k could exceed array length.',
+      author: 'Sarah Chen (Lead Interviewer)',
+    },
+    {
+      time: '12:30',
+      text: 'Identified that nested loop yields O(N*k) and pivoted immediately to Monotonic Deque for O(N).',
+      author: 'Sarah Chen (Lead Interviewer)',
+    },
+    {
+      time: '24:50',
+      text: 'Clean variable naming. Dry-ran test case with negative values aloud before coding.',
+      author: 'Sarah Chen (Lead Interviewer)',
+    },
+  ]);
+  const [newNote, setNewNote] = useState('');
+
+  const currentQuestion = SIMULATOR_QUESTIONS[selectedQuestionIndex];
+
+  // Initialize code when language or question changes
+  useEffect(() => {
+    if (currentQuestion && currentQuestion.starterCode[selectedLanguage]) {
+      setCode(currentQuestion.starterCode[selectedLanguage]);
+    }
+  }, [selectedQuestionIndex, selectedLanguage]);
+
+  // Timer effect
+  useEffect(() => {
+    let interval: any = null;
+    if (isTimerRunning && secondsLeft > 0) {
+      interval = setInterval(() => {
+        setSecondsLeft((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isTimerRunning, secondsLeft]);
+
+  const formatTimer = (totalSec: number) => {
+    const mins = Math.floor(totalSec / 60);
+    const secs = totalSec % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  const handleRunTests = () => {
+    setIsRunningTests(true);
+    setTestOutput(null);
+    setTestStatus('idle');
+
+    setTimeout(() => {
+      setIsRunningTests(false);
+      setTestStatus('success');
+      setTestOutput(
+        `✓ Test Case 1: nums=[1,3,-1,-3,5,3,6,7], k=3 -> Expected: [3,3,5,5,6,7], Got: [3,3,5,5,6,7] (2.1ms)\n✓ Test Case 2: nums=[1], k=1 -> Expected: [1], Got: [1] (0.8ms)\n✓ Test Case 3: nums=[9,11], k=2 -> Expected: [11], Got: [11] (0.9ms)\n\nCorporate Evaluation: All 3 Test Cases Passed. Memory: 42.1 MB. Time Complexity O(N) verified.`
+      );
+    }, 1200);
+  };
+
+  const handleAddNote = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newNote.trim()) return;
+    const timeStamp = `${Math.floor((45 * 60 - secondsLeft) / 60)
+      .toString()
+      .padStart(2, '0')}:${((45 * 60 - secondsLeft) % 60)
+      .toString()
+      .padStart(2, '0')}`;
+    setNotes((prev) => [
+      ...prev,
+      {
+        time: timeStamp,
+        text: newNote.trim(),
+        author: 'Interviewer Panel',
+      },
+    ]);
+    setNewNote('');
+  };
+
+  const totalScore =
+    rubricScores.algo +
+    rubricScores.edgeCases +
+    rubricScores.codeHygiene +
+    rubricScores.communication;
+
+  // Mock student to pass to Scorecard modal
+  const simulatedStudent: Student = {
+    id: 'sim-1',
+    name: 'Aisha Khan',
+    avatar:
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    track: 'Full Stack MERN & Distributed Systems',
+    readinessScore: totalScore,
+    status: totalScore >= 85 ? 'Corporate Ready' : totalScore >= 70 ? 'Needs Polish' : 'At Risk',
+    targetRole: 'SDE-1 / Junior Backend Engineer',
+    interviewer: 'Sarah Chen (Senior Staff at CloudScale)',
+    interviewDate: 'Live Session in Progress',
+    metrics: {
+      dsa: rubricScores.algo * 4,
+      systemDesign: rubricScores.edgeCases * 5,
+      codeQuality: rubricScores.codeHygiene * 4,
+      communication: rubricScores.communication * 3.3,
+      debugging: 94,
+      behavioral: 92,
+    },
+    strengths: [
+      'Identified O(N) Monotonic Deque formulation immediately',
+      'Articulated boundary conditions aloud without hesitation',
+      'Clean modular functions adhering to corporate production standards',
+    ],
+    growthAreas: [
+      'Ensure memory overhead of double-ended queue is discussed upfront',
+    ],
+    interviewerSummary:
+      'Candidate Aisha exhibits top 5% corporate readiness. Clear vocal reasoning, fast error detection, and high engineering poise.',
+    actionPlan: [
+      'Submit directly to Tier-1 product tech hiring drives',
+      'Practice 2 advanced concurrent LRU cache problems',
+    ],
+  };
+
+  return (
+    <section id="simulator" className="section" style={{ position: 'relative' }}>
+      <div className="container">
+        <div className="section-header">
+          <div className="section-tag">
+            <span className="pulse-live" />
+            <span>Interactive Simulator</span>
+          </div>
+          <h2 className="section-title">Experience a CandiDev Corporate Mock</h2>
+          <p className="section-desc">
+            Explore our real-time mock interview environment. Watch the candidate video stream,
+            test code execution, adjust live rubric parameters, and generate an instant corporate
+            readiness scorecard.
+          </p>
+        </div>
+
+        {/* Simulator Frame */}
+        <div
+          style={{
+            background: 'var(--bg-secondary)',
+            borderRadius: 'var(--radius-xl)',
+            border: '1px solid var(--border-medium)',
+            boxShadow: 'var(--shadow-lg), var(--shadow-glow-cyan)',
+            overflow: 'hidden',
+          }}
+        >
+          {/* Top Control Bar */}
+          <div
+            style={{
+              padding: '1rem 1.5rem',
+              background: 'rgba(15, 23, 42, 0.95)',
+              borderBottom: '1px solid var(--border-subtle)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '1rem',
+            }}
+          >
+            {/* Left: Session Details */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span className="pulse-live" />
+                <span
+                  style={{
+                    fontSize: '0.85rem',
+                    fontWeight: 700,
+                    color: '#ffffff',
+                    letterSpacing: '0.04em',
+                  }}
+                >
+                  LIVE SESSION #4829
+                </span>
+              </div>
+
+              {/* Question Dropdown */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                  Problem:
+                </span>
+                <select
+                  value={selectedQuestionIndex}
+                  onChange={(e) => setSelectedQuestionIndex(Number(e.target.value))}
+                  style={{
+                    background: 'rgba(30, 41, 59, 0.7)',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: 'var(--radius-sm)',
+                    color: 'var(--text-primary)',
+                    padding: '0.35rem 0.75rem',
+                    fontSize: '0.82rem',
+                    fontWeight: 600,
+                    outline: 'none',
+                    cursor: 'pointer',
+                  }}
+                >
+                  {SIMULATOR_QUESTIONS.map((q, idx) => (
+                    <option key={q.id} value={idx}>
+                      {q.title} ({q.difficulty})
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Right: Timer, Language & Scorecard CTA */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              {/* Language Selector */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                {(['javascript', 'python', 'java'] as const).map((lang) => (
+                  <button
+                    key={lang}
+                    onClick={() => setSelectedLanguage(lang)}
+                    style={{
+                      background:
+                        selectedLanguage === lang
+                          ? 'rgba(56, 189, 248, 0.2)'
+                          : 'transparent',
+                      border: '1px solid',
+                      borderColor:
+                        selectedLanguage === lang
+                          ? 'var(--cyan-glow)'
+                          : 'rgba(255, 255, 255, 0.08)',
+                      color:
+                        selectedLanguage === lang
+                          ? '#38bdf8'
+                          : 'var(--text-secondary)',
+                      padding: '0.25rem 0.65rem',
+                      borderRadius: 'var(--radius-sm)',
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    {lang === 'javascript' ? 'JS' : lang}
+                  </button>
+                ))}
+              </div>
+
+              {/* Countdown Timer */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  background: 'rgba(0, 0, 0, 0.4)',
+                  padding: '0.3rem 0.75rem',
+                  borderRadius: 'var(--radius-sm)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  fontFamily: 'var(--font-code)',
+                  fontSize: '0.88rem',
+                  color: secondsLeft < 300 ? '#f43f5e' : '#38bdf8',
+                }}
+              >
+                <Clock size={14} />
+                <span>{formatTimer(secondsLeft)}</span>
+                <button
+                  onClick={() => setIsTimerRunning(!isTimerRunning)}
+                  title={isTimerRunning ? 'Pause Timer' : 'Resume Timer'}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'var(--text-muted)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                  }}
+                >
+                  {isTimerRunning ? <Pause size={12} /> : <Play size={12} />}
+                </button>
+                <button
+                  onClick={() => setSecondsLeft(45 * 60)}
+                  title="Reset Timer"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'var(--text-muted)',
+                    cursor: 'pointer',
+                    display: 'flex',
+                  }}
+                >
+                  <RotateCcw size={12} />
+                </button>
+              </div>
+
+              {/* Generate Scorecard Button */}
+              <button
+                onClick={() => onOpenScorecard(simulatedStudent)}
+                className="btn-accent"
+                style={{
+                  padding: '0.4rem 0.9rem',
+                  fontSize: '0.82rem',
+                }}
+              >
+                <Award size={15} />
+                <span>Scorecard Preview</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Main Interactive Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(300px, 360px) 1fr',
+              minHeight: '620px',
+            }}
+            className="simulator-grid"
+          >
+            {/* Left Column: Video Feeds, Live Audio Waveform & Evaluation Panel */}
+            <div
+              style={{
+                background: 'rgba(11, 16, 29, 0.85)',
+                borderRight: '1px solid var(--border-subtle)',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              {/* Dual Video Stream Simulation */}
+              <div
+                style={{
+                  padding: '1.2rem',
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '0.8rem',
+                  borderBottom: '1px solid var(--border-subtle)',
+                }}
+              >
+                {/* Candidate Feed */}
+                <div
+                  style={{
+                    position: 'relative',
+                    aspectRatio: '4/3',
+                    borderRadius: 'var(--radius-md)',
+                    overflow: 'hidden',
+                    border: '1px solid var(--border-subtle)',
+                    backgroundColor: '#0a0f1d',
+                  }}
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80"
+                    alt="Candidate Aisha Khan"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      padding: '0.4rem 0.5rem',
+                      background: 'linear-gradient(transparent, rgba(0,0,0,0.85))',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '0.72rem',
+                        fontWeight: 600,
+                        color: '#ffffff',
+                      }}
+                    >
+                      Aisha (Candidate)
+                    </span>
+                    <div style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
+                      <span className="waveform-bar" style={{ height: 10 }} />
+                      <span className="waveform-bar" style={{ height: 16 }} />
+                      <span className="waveform-bar" style={{ height: 8 }} />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Interviewer Feed */}
+                <div
+                  style={{
+                    position: 'relative',
+                    aspectRatio: '4/3',
+                    borderRadius: 'var(--radius-md)',
+                    overflow: 'hidden',
+                    border: '1px solid var(--border-subtle)',
+                    backgroundColor: '#0a0f1d',
+                  }}
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80"
+                    alt="Interviewer Sarah Chen"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      padding: '0.4rem 0.5rem',
+                      background: 'linear-gradient(transparent, rgba(0,0,0,0.85))',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: '0.72rem',
+                        fontWeight: 600,
+                        color: '#ffffff',
+                      }}
+                    >
+                      Sarah (Lead)
+                    </span>
+                    <span
+                      style={{
+                        fontSize: '0.65rem',
+                        color: '#34d399',
+                        fontWeight: 600,
+                      }}
+                    >
+                      CloudScale
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Live Rubric Score Sliders */}
+              <div
+                style={{
+                  padding: '1.2rem',
+                  borderBottom: '1px solid var(--border-subtle)',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  <h4
+                    style={{
+                      fontSize: '0.85rem',
+                      fontWeight: 700,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      color: 'var(--text-secondary)',
+                    }}
+                  >
+                    Live Corporate Rubric
+                  </h4>
+                  <div
+                    style={{
+                      background: 'rgba(56, 189, 248, 0.15)',
+                      color: '#38bdf8',
+                      padding: '0.2rem 0.6rem',
+                      borderRadius: 'var(--radius-full)',
+                      fontWeight: 700,
+                      fontSize: '0.82rem',
+                      fontFamily: 'var(--font-code)',
+                    }}
+                  >
+                    {totalScore} / 100
+                  </div>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                  {/* Metric 1 */}
+                  <div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        fontSize: '0.78rem',
+                        marginBottom: '0.25rem',
+                      }}
+                    >
+                      <span style={{ color: 'var(--text-primary)' }}>
+                        Monotonic Deque Optimization (O(N))
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                          color: '#38bdf8',
+                          fontFamily: 'var(--font-code)',
+                        }}
+                      >
+                        {rubricScores.algo}/25
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0}
+                      max={25}
+                      value={rubricScores.algo}
+                      onChange={(e) =>
+                        setRubricScores({ ...rubricScores, algo: Number(e.target.value) })
+                      }
+                      style={{ width: '100%', accentColor: '#38bdf8' }}
+                    />
+                  </div>
+
+                  {/* Metric 2 */}
+                  <div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        fontSize: '0.78rem',
+                        marginBottom: '0.25rem',
+                      }}
+                    >
+                      <span style={{ color: 'var(--text-primary)' }}>
+                        Boundary & Edge-Case Vigilance
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                          color: '#34d399',
+                          fontFamily: 'var(--font-code)',
+                        }}
+                      >
+                        {rubricScores.edgeCases}/20
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0}
+                      max={20}
+                      value={rubricScores.edgeCases}
+                      onChange={(e) =>
+                        setRubricScores({
+                          ...rubricScores,
+                          edgeCases: Number(e.target.value),
+                        })
+                      }
+                      style={{ width: '100%', accentColor: '#34d399' }}
+                    />
+                  </div>
+
+                  {/* Metric 3 */}
+                  <div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        fontSize: '0.78rem',
+                        marginBottom: '0.25rem',
+                      }}
+                    >
+                      <span style={{ color: 'var(--text-primary)' }}>
+                        Production Code Hygiene & Naming
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                          color: '#a78bfa',
+                          fontFamily: 'var(--font-code)',
+                        }}
+                      >
+                        {rubricScores.codeHygiene}/25
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0}
+                      max={25}
+                      value={rubricScores.codeHygiene}
+                      onChange={(e) =>
+                        setRubricScores({
+                          ...rubricScores,
+                          codeHygiene: Number(e.target.value),
+                        })
+                      }
+                      style={{ width: '100%', accentColor: '#a78bfa' }}
+                    />
+                  </div>
+
+                  {/* Metric 4 */}
+                  <div>
+                    <div
+                      style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        fontSize: '0.78rem',
+                        marginBottom: '0.25rem',
+                      }}
+                    >
+                      <span style={{ color: 'var(--text-primary)' }}>
+                        STAR Method & Verbal Poise
+                      </span>
+                      <span
+                        style={{
+                          fontWeight: 700,
+                          color: '#fbbf24',
+                          fontFamily: 'var(--font-code)',
+                        }}
+                      >
+                        {rubricScores.communication}/30
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min={0}
+                      max={30}
+                      value={rubricScores.communication}
+                      onChange={(e) =>
+                        setRubricScores({
+                          ...rubricScores,
+                          communication: Number(e.target.value),
+                        })
+                      }
+                      style={{ width: '100%', accentColor: '#fbbf24' }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Timestamped Interviewer Notes Log */}
+              <div
+                style={{
+                  padding: '1.2rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  flexGrow: 1,
+                }}
+              >
+                <h4
+                  style={{
+                    fontSize: '0.85rem',
+                    fontWeight: 700,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    color: 'var(--text-secondary)',
+                    marginBottom: '0.8rem',
+                  }}
+                >
+                  Timestamped Interviewer Log
+                </h4>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '0.65rem',
+                    maxHeight: '190px',
+                    overflowY: 'auto',
+                    marginBottom: '0.8rem',
+                  }}
+                >
+                  {notes.map((n, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        padding: '0.55rem 0.75rem',
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        borderRadius: 'var(--radius-sm)',
+                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        fontSize: '0.78rem',
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                          color: '#38bdf8',
+                          fontWeight: 600,
+                          marginBottom: '0.15rem',
+                          fontFamily: 'var(--font-code)',
+                        }}
+                      >
+                        <span>{n.time}</span>
+                        <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>
+                          {n.author}
+                        </span>
+                      </div>
+                      <p style={{ color: 'var(--text-secondary)', lineHeight: 1.4 }}>
+                        {n.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Add Note Form */}
+                <form
+                  onSubmit={handleAddNote}
+                  style={{ display: 'flex', gap: '0.4rem', marginTop: 'auto' }}
+                >
+                  <input
+                    type="text"
+                    placeholder="Add interviewer timestamp observation..."
+                    value={newNote}
+                    onChange={(e) => setNewNote(e.target.value)}
+                    style={{
+                      flexGrow: 1,
+                      background: 'rgba(15, 23, 42, 0.9)',
+                      border: '1px solid var(--border-subtle)',
+                      borderRadius: 'var(--radius-sm)',
+                      padding: '0.45rem 0.75rem',
+                      fontSize: '0.78rem',
+                      color: 'var(--text-primary)',
+                      outline: 'none',
+                    }}
+                  />
+                  <button
+                    type="submit"
+                    style={{
+                      background: 'var(--cyan-primary)',
+                      border: 'none',
+                      borderRadius: 'var(--radius-sm)',
+                      color: '#fff',
+                      padding: '0.45rem 0.75rem',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Send size={13} />
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            {/* Right Column: Problem Prompt & Interactive Code Editor */}
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                background: '#070a13',
+              }}
+            >
+              {/* Problem Prompt Header */}
+              <div
+                style={{
+                  padding: '1.2rem 1.6rem',
+                  borderBottom: '1px solid var(--border-subtle)',
+                  background: 'rgba(15, 23, 42, 0.5)',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.6rem',
+                    marginBottom: '0.4rem',
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                      padding: '0.15rem 0.55rem',
+                      borderRadius: 'var(--radius-full)',
+                      background: 'rgba(129, 140, 248, 0.2)',
+                      color: '#a5b4fc',
+                    }}
+                  >
+                    {currentQuestion.category}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: '0.72rem',
+                      fontWeight: 700,
+                      padding: '0.15rem 0.55rem',
+                      borderRadius: 'var(--radius-full)',
+                      background: 'rgba(56, 189, 248, 0.15)',
+                      color: '#38bdf8',
+                    }}
+                  >
+                    Target: {currentQuestion.difficulty}
+                  </span>
+                </div>
+                <h3
+                  style={{
+                    fontSize: '1.15rem',
+                    fontWeight: 700,
+                    color: 'var(--text-primary)',
+                    marginBottom: '0.4rem',
+                  }}
+                >
+                  {currentQuestion.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '0.85rem',
+                    color: 'var(--text-secondary)',
+                    whiteSpace: 'pre-line',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {currentQuestion.description}
+                </p>
+              </div>
+
+              {/* Code Editor Window */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  flexGrow: 1,
+                  position: 'relative',
+                }}
+              >
+                <div
+                  style={{
+                    padding: '0.5rem 1.6rem',
+                    background: '#090d18',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-code)',
+                      fontSize: '0.78rem',
+                      color: 'var(--text-muted)',
+                    }}
+                  >
+                    Solution.{selectedLanguage === 'javascript' ? 'js' : selectedLanguage === 'python' ? 'py' : 'java'}
+                  </span>
+                  <span
+                    style={{
+                      fontSize: '0.75rem',
+                      color: '#34d399',
+                      fontWeight: 600,
+                    }}
+                  >
+                    ● Auto-syncing to evaluator terminal
+                  </span>
+                </div>
+
+                {/* Editable Code Box */}
+                <textarea
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  style={{
+                    flexGrow: 1,
+                    width: '100%',
+                    minHeight: '260px',
+                    backgroundColor: 'transparent',
+                    color: '#e2e8f0',
+                    fontFamily: 'var(--font-code)',
+                    fontSize: '0.85rem',
+                    lineHeight: 1.6,
+                    padding: '1.2rem 1.6rem',
+                    border: 'none',
+                    outline: 'none',
+                    resize: 'none',
+                  }}
+                  spellCheck={false}
+                />
+
+                {/* Output Console Box */}
+                {testOutput && (
+                  <div
+                    style={{
+                      padding: '1rem 1.6rem',
+                      background: 'rgba(5, 8, 16, 0.95)',
+                      borderTop: '1px solid var(--border-subtle)',
+                      fontFamily: 'var(--font-code)',
+                      fontSize: '0.8rem',
+                      color: '#34d399',
+                      whiteSpace: 'pre-wrap',
+                      maxHeight: '140px',
+                      overflowY: 'auto',
+                    }}
+                  >
+                    {testOutput}
+                  </div>
+                )}
+
+                {/* Execution Bar */}
+                <div
+                  style={{
+                    padding: '0.85rem 1.6rem',
+                    background: 'rgba(15, 23, 42, 0.85)',
+                    borderTop: '1px solid var(--border-subtle)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                    <span
+                      style={{
+                        fontSize: '0.78rem',
+                        color: 'var(--text-muted)',
+                      }}
+                    >
+                      Time Complexity Target: <strong style={{ color: '#38bdf8' }}>O(N)</strong>
+                    </span>
+                  </div>
+
+                  <div style={{ display: 'flex', gap: '0.8rem' }}>
+                    <button
+                      onClick={handleRunTests}
+                      disabled={isRunningTests}
+                      className="btn-primary"
+                      style={{
+                        padding: '0.55rem 1.25rem',
+                        fontSize: '0.85rem',
+                      }}
+                    >
+                      {isRunningTests ? (
+                        <>
+                          <span className="pulse-live" />
+                          <span>Executing in Sandbox...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Play size={15} fill="#fff" />
+                          <span>Run Corporate Test Suite</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        @media (max-width: 900px) {
+          .simulator-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
