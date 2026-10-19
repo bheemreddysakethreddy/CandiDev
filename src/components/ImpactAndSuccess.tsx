@@ -34,7 +34,7 @@ export default function ImpactAndSuccess({ onOpenBooking }: ImpactAndSuccessProp
             <span>How Many Found Our Services Helpful</span>
           </div>
           <h2 className="section-title">
-            18,500+ Candidates Evaluated. 94.8% Placement Success.
+            100+ Candidates Evaluated. 86% Interview Success Rate.
           </h2>
           <p className="section-desc">
             We measure our worth strictly by offers bagged and career trajectories transformed. Explore verified data, before-and-after scorecards, and genuine student feedback.
@@ -121,7 +121,7 @@ export default function ImpactAndSuccess({ onOpenBooking }: ImpactAndSuccessProp
               Placement Outcomes: With CandiDev vs Without CandiDev
             </h3>
             <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)' }}>
-              Data compiled across 85+ partner colleges and bootcamps over the past 3 campus recruitment cycles.
+              Data compiled across 100+ evaluated candidates and student mock sessions.
             </p>
           </div>
 

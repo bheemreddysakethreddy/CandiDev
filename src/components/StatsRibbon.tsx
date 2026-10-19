@@ -23,23 +23,23 @@ export default function StatsRibbon() {
   const valueProps = [
     {
       icon: <Award size={18} color="var(--burgundy-accent)" />,
-      title: 'FAANG & Tier-1 Lead Interviewers',
-      desc: 'Active corporate software leaders with 5+ yrs experience',
+      title: 'Skilled Startup Engineers & Leads',
+      desc: 'Active software engineers & tech leads with deep product experience',
     },
     {
       icon: <CheckCircle2 size={18} color="#059669" />,
-      title: 'Standardized 10-Point Corporate Rubric',
-      desc: 'Zero subjective bias; measured against exact hiring thresholds',
+      title: 'Standardized 10-Point Technical Rubric',
+      desc: 'Zero subjective bias; measured against practical engineering standards',
     },
     {
       icon: <Clock size={18} color="#b45309" />,
       title: '2-Hour Diagnostic Report Turnaround',
-      desc: 'Instant video replay, timestamped logs & 14-day action plans',
+      desc: 'Instant notes, code review logs & 14-day study action plans',
     },
     {
       icon: <ShieldCheck size={18} color="var(--burgundy-accent)" />,
-      title: 'Verified Corporate Competency Badges',
-      desc: 'Cryptographic credentials trusted by 70+ hiring companies',
+      title: 'Verified Job-Readiness Badges',
+      desc: 'Practical evaluations showcasing candidate problem-solving skills',
     },
   ];
 

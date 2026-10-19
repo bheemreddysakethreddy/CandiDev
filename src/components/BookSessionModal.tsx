@@ -38,7 +38,7 @@ export default function BookSessionModal({
   // Form States
   const [userRole, setUserRole] = useState<'student' | 'college'>('student');
   const [selectedTrack, setSelectedTrack] = useState<string>('DSA & Algorithmic Problem Solving');
-  const [targetTier, setTargetTier] = useState<string>('FAANG & Tier-1 Tech (Google, Amazon, Microsoft)');
+  const [targetTier, setTargetTier] = useState<string>('High-Growth Product Startups (Fintech, SaaS, AI)');
   const [selectedDate, setSelectedDate] = useState<string>('Tomorrow');
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string>('7:00 PM - 8:30 PM IST');
   const [fullName, setFullName] = useState('');
@@ -108,10 +108,10 @@ export default function BookSessionModal({
   ];
 
   const companyTiers = [
-    'FAANG & Tier-1 Tech (Google, Amazon, Microsoft)',
-    'High-Growth Fintech & Unicorns (Razorpay, Swiggy, CRED)',
-    'Enterprise Cloud & Product (Atlassian, Salesforce, Adobe)',
-    'General Corporate SDE Placement Drive',
+    'High-Growth Product Startups (Fintech, SaaS, AI)',
+    'Fast-Paced Consumer Tech Startups (Series A-C)',
+    'B2B SaaS & Cloud Platforms',
+    'General Software Engineer / Tech Role',
   ];
 
   return (

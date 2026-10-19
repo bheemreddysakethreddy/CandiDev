@@ -29,7 +29,7 @@ export default function WhoWeAre({ onOpenBooking }: WhoWeAreProps) {
             <span>Who Are We</span>
           </div>
           <h2 className="section-title">
-            The Elite Corporate Tech Mock Wing for Universities & Developers
+            The Practical Tech Mock Interview Engine for Software Engineers
           </h2>
           <p className="section-desc">
             Bridging the gap between academic coding and real-world corporate hiring standards. We help students build interview-ready skills through industry-aligned mock interviews and practical feedback.
@@ -124,18 +124,18 @@ export default function WhoWeAre({ onOpenBooking }: WhoWeAreProps) {
             >
               <div>
                 <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--burgundy-accent)' }}>
-                  250+
+                  25+
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-                  Active FAANG/Tier-1 Mentors
+                  Skilled Startup Mentors
                 </div>
               </div>
               <div>
                 <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--burgundy-accent)' }}>
-                  18,500+
+                  100+
                 </div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 500 }}>
-                  Real Corporate Mocks Taken
+                  Realistic Mocks Delivered
                 </div>
               </div>
             </div>
@@ -356,13 +356,13 @@ export default function WhoWeAre({ onOpenBooking }: WhoWeAreProps) {
               }}
             >
               <Briefcase size={13} />
-              <span>Leadership & Corporate Bar Committee</span>
+              <span>Mentorship & Evaluation Team</span>
             </div>
             <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-heading)' }}>
-              Guided by Tech Leaders Who Hired at Scale
+              Guided by Skilled Engineers & Startup Tech Leads
             </h3>
             <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>
-              Our leadership team brings decades of combined experience conducting engineering interviews at Google, Amazon, Microsoft, and Uber.
+              Our mentors are active software engineers and tech leads working in high-growth startups and fast-paced product companies.
             </p>
           </div>
 

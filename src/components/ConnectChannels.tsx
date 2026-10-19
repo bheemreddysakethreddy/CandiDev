@@ -238,17 +238,17 @@ export default function ConnectChannels() {
               Need Help Deciding or Prefer a Quick Phone Consultation?
             </h3>
             <p style={{ fontSize: '0.92rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-              Drop your details here. A senior mock interview counselor or institutional alliance lead will call or message you within 15 minutes.
+              Drop your details here. A senior mock interview counselor will call or message you within 15 minutes.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', marginBottom: '1.5rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
                 <CheckCircle2 size={16} color="#059669" />
-                <span>Immediate 1-on-1 counseling on target company bars (FAANG vs Startups)</span>
+                <span>Immediate 1-on-1 counseling on target company bars (Early-stage vs Growth Startups)</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
                 <CheckCircle2 size={16} color="#059669" />
-                <span>Custom cohort mock timeline for upcoming college placement drives</span>
+                <span>Personalized mock preparation timeline for upcoming interviews</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', fontSize: '0.88rem', color: 'var(--text-primary)' }}>
                 <CheckCircle2 size={16} color="#059669" />
@@ -257,7 +257,7 @@ export default function ConnectChannels() {
             </div>
 
             <div style={{ fontSize: '0.82rem', color: 'var(--text-muted)' }}>
-              📞 Direct Placement Office Hotline: <strong>+91 (800) 226-3433</strong> (9 AM - 9 PM IST)
+              📞 Direct Candidate Support Hotline: <strong>+91 (800) 226-3433</strong> (9 AM - 9 PM IST)
             </div>
           </div>
 
@@ -412,7 +412,7 @@ export default function ConnectChannels() {
                   </label>
                   <textarea
                     rows={2}
-                    placeholder="e.g. Preparing for Amazon SDE-1 campus drive in November..."
+                    placeholder="e.g. Preparing for tech startup SDE-1 drives in November..."
                     value={formMessage}
                     onChange={(e) => setFormMessage(e.target.value)}
                     style={{

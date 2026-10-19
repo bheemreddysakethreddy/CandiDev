@@ -84,7 +84,7 @@ export default function MockTypesExplorer({
             Specialized Corporate Mock Tracks for Every Engineering Discipline
           </h2>
           <p className="section-desc">
-            We don’t do generic, one-size-fits-all interviews. Choose from 8 battle-tested corporate tracks calibrated against FAANG, high-growth startups, and Fortune 500 hiring rubrics.
+            We don’t do generic, one-size-fits-all interviews. Choose from 8 practical mock tracks calibrated against high-growth tech startups and modern product hiring standards.
           </p>
         </div>
 
@@ -415,16 +415,17 @@ export default function MockTypesExplorer({
         {/* Live Simulator Link */}
         <div
           style={{
-            background: 'linear-gradient(135deg, #fdfbfbff 0%, #fafafaff 100%)',
-            color: '#ffffff',
+            background: 'linear-gradient(135deg, #fdfbfb 0%, #faf8f9 100%)',
+            color: 'var(--text-primary)',
             borderRadius: 'var(--radius-xl)',
-            border: "1px solid #d0d0d0da",
+            border: '1px solid var(--border-medium)',
             padding: '2.5rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
             gap: '1.5rem',
+            boxShadow: 'var(--shadow-sm)',
           }}
         >
           <div>
@@ -435,20 +436,20 @@ export default function MockTypesExplorer({
                 gap: '0.4rem',
                 fontSize: '0.75rem',
                 fontWeight: 700,
-                color: '#fca5a5',
+                color: 'var(--burgundy-accent)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 marginBottom: '0.4rem',
               }}
             >
               <Cpu size={14} />
-              <span>Free Corporate Sandbox Tryout</span>
+              <span>Interactive Practice Sandbox</span>
             </div>
-            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.4rem' }}>
+            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-heading)', marginBottom: '0.4rem' }}>
               Want to Experience the Live Code & Rubric Simulator Right Now?
             </h3>
-            <p style={{ fontSize: '0.88rem', color: '#d4d4d8', maxWidth: '600px' }}>
-              Test your code execution against real test cases and observe how our FAANG interviewers score you in real-time.
+            <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', maxWidth: '600px' }}>
+              Test your code execution against real test cases and observe how our skilled startup engineer mentors score you in real-time.
             </p>
           </div>
           <button
@@ -456,18 +457,10 @@ export default function MockTypesExplorer({
               const el = document.getElementById('portal');
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
+            className="btn-primary"
             style={{
-              background: '#ffffff',
-              color: '#09090b',
-              border: 'none',
-              borderRadius: 'var(--radius-sm)',
               padding: '0.75rem 1.4rem',
               fontSize: '0.88rem',
-              fontWeight: 700,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
             }}
           >
             <span>Launch Live Portal</span>

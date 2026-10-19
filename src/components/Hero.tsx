@@ -10,12 +10,10 @@ import {
 
 interface HeroProps {
   onOpenBooking: () => void;
-  onNavigateToDashboard: () => void;
 }
 
 export default function Hero({
   onOpenBooking,
-  onNavigateToDashboard,
 }: HeroProps) {
   return (
     <section
@@ -32,10 +30,8 @@ export default function Hero({
           <div
             className="section-tag"
             style={{
-              cursor: 'pointer',
               marginBottom: '1.5rem',
             }}
-            onClick={onNavigateToDashboard}
           >
             <Sparkles size={14} color="var(--burgundy-accent)" />
             <span>Dedicated Mock Interview Division for Training Institutes</span>
@@ -69,9 +65,9 @@ export default function Hero({
             }}
           >
             CandiDev partners with tech training institutes, colleges, and bootcamps to conduct
-            rigorous, unscripted corporate mock interviews led by FAANG & Tier-1 lead engineers.
+            rigorous, practical mock interviews led by skilled software engineers and tech leads working in startups.
             Eliminate candidate anxiety, identify blindspots with 10-point rubrics, and deliver
-            hiring-ready talent that corporate recruiters fight for.
+            interview-ready talent that tech recruiters look for.
           </p>
 
           {/* Action Buttons */}
@@ -97,17 +93,21 @@ export default function Hero({
               <ArrowRight size={17} />
             </button>
 
-            <button
-              onClick={onNavigateToDashboard}
+            <a
+              href="#what-we-can-do"
               className="btn-secondary"
               style={{
                 padding: '0.9rem 2rem',
                 fontSize: '1rem',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
               }}
             >
               <Users size={16} color="var(--burgundy-accent)" />
-              <span>Explore Institute Portal</span>
-            </button>
+              <span>Explore Mock Tracks & Services</span>
+            </a>
           </div>
 
           {/* Key Metric Highlights - Crisp White Light Mode Card */}
@@ -268,17 +268,21 @@ export default function Hero({
               </div>
 
               <div style={{ display: 'flex', gap: '0.8rem' }}>
-                <button
-                  onClick={onNavigateToDashboard}
+                <a
+                  href="#what-we-can-do"
                   className="btn-primary"
                   style={{
                     padding: '0.7rem 1.3rem',
                     fontSize: '0.88rem',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
                   }}
                 >
                   <Users size={16} />
-                  <span>View Cohort Portal</span>
-                </button>
+                  <span>Explore Mock Tracks</span>
+                </a>
                 <button
                   onClick={onOpenBooking}
                   className="btn-secondary"

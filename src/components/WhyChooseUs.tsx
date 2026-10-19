@@ -26,9 +26,9 @@ export default function WhyChooseUs({ onOpenBooking }: WhyChooseUsProps) {
   const reasons = [
     {
       icon: <Users size={22} color="var(--burgundy-accent)" />,
-      title: '100% Active Corporate Veterans',
+      title: '100% Skilled Startup Engineers',
       subtitle: 'Zero Lecturers, Zero Random Freelancers',
-      desc: 'You are tested by active Senior Engineers (L5+ / Staff SDEs) from Google, Amazon, Microsoft, and Uber who conduct real hiring committee rounds daily.',
+      desc: 'You are evaluated by skilled software engineers and tech leads actively building production code and systems in modern tech startups.',
     },
     {
       icon: <FileCheck size={22} color="#059669" />,
@@ -40,25 +40,25 @@ export default function WhyChooseUs({ onOpenBooking }: WhyChooseUsProps) {
       icon: <Clock size={22} color="#b45309" />,
       title: '2-Hour Diagnostic Report Turnaround',
       subtitle: 'Full Video Replay & Timestamped Bookmarks',
-      desc: 'Receive your comprehensive 4-page diagnostic report with minute-by-minute video bookmarks showing exactly where you stumbled and how to fix it.',
+      desc: 'Receive your comprehensive diagnostic report with minute-by-minute video bookmarks showing exactly where you stumbled and how to fix it.',
     },
     {
       icon: <ShieldCheck size={22} color="var(--burgundy-accent)" />,
-      title: 'Verified Badges Trusted by 420+ Companies',
-      subtitle: 'Direct Screening Round Waiver',
-      desc: 'Top quartile scorers receive verifiable cryptographic CandiDev credentials that corporate hiring partners use to bypass initial screening rounds.',
+      title: 'Verifiable Competency Badges',
+      subtitle: 'Shareable Proof of Coding Readiness',
+      desc: 'Strong performers receive verified CandiDev credentials that can be showcased on LinkedIn and resumes to demonstrate practical problem-solving ability.',
     },
     {
       icon: <Award size={22} color="#059669" />,
-      title: 'Turnkey University Batch Automation',
-      subtitle: '100+ Hours of Trainer Workload Saved',
-      desc: 'Colleges and placement cells outsource their entire mock scheduling, interviewer logistics, and cohort analytics without exhausting internal faculty.',
+      title: 'Turnkey Cohort Support',
+      subtitle: '100+ Hours of Preparation Saved',
+      desc: 'Candidates and student groups access structured mock scheduling, mentor pairing, and cohort analytics without logistical hassle.',
     },
     {
       icon: <TrendingUp size={22} color="var(--burgundy-accent)" />,
-      title: 'Proven +35% to +60% Placement Surge',
-      subtitle: '3.4x Average Salary Package Increase',
-      desc: 'Backed by real verified data from 85+ partner universities and over 18,500 candidates who transformed their technical interview outcomes.',
+      title: '100+ Mocks Delivered & Growing',
+      subtitle: 'Practical Interview Transformation',
+      desc: 'Backed by verified feedback from 100+ candidates who built real confidence in technical interview rounds.',
     },
   ];
 
@@ -75,7 +75,7 @@ export default function WhyChooseUs({ onOpenBooking }: WhyChooseUsProps) {
             The Gold Standard in Corporate Technical Interview Calibration
           </h2>
           <p className="section-desc">
-            Why students, bootcamps, and top university placement cells choose CandiDev over internal classroom tests and casual peer practice platforms.
+            Why aspiring engineers, students, and job seekers choose CandiDev over theoretical courses and casual peer practice platforms.
           </p>
         </div>
 

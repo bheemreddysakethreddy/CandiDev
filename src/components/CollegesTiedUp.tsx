@@ -26,7 +26,7 @@ export default function CollegesTiedUp({
   const [searchQuery, setSearchQuery] = useState('');
 
   const categories = [
-    { id: 'all', label: 'All 85+ Partners' },
+    { id: 'all', label: 'All Campus Partners' },
     { id: 'Tier-1 University', label: 'Tier-1 Universities' },
     { id: 'Premier Tech Institute', label: 'Premier Tech Institutes' },
     { id: 'Top Private University', label: 'Top Private Universities' },
@@ -53,10 +53,10 @@ export default function CollegesTiedUp({
             <span>Which Colleges Tied Up With Us</span>
           </div>
           <h2 className="section-title">
-            Trusted by 85+ Universities, IIT/NIT Cells & Leading Bootcamps
+            Partnered with Engineering Colleges, Cells & Pilot Cohorts
           </h2>
           <p className="section-desc">
-            From premier national institutes to high-volume autonomous universities, explore how placement directorates across India outsource their technical mocks to CandiDev.
+            From premier institutes to emerging campuses, explore how placement cells and student cohorts collaborate with CandiDev for practical startup-level mock drives.
           </p>
         </div>
 

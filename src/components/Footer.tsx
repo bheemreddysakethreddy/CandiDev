@@ -12,12 +12,10 @@ import {
 
 interface FooterProps {
   onOpenBooking: () => void;
-  onNavigateToDashboard: () => void;
 }
 
 export default function Footer({
   onOpenBooking,
-  onNavigateToDashboard,
 }: FooterProps) {
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
@@ -111,13 +109,20 @@ export default function Footer({
               <span>Book a Session Now</span>
               <ArrowRight size={17} />
             </button>
-            <button
-              onClick={onNavigateToDashboard}
+            <a
+              href="#what-we-can-do"
               className="btn-secondary"
-              style={{ padding: '0.85rem 2rem', fontSize: '1rem' }}
+              style={{
+                padding: '0.85rem 2rem',
+                fontSize: '1rem',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
             >
-              <span>Explore Institute Command Center</span>
-            </button>
+              <span>Explore Mock Tracks & Services</span>
+            </a>
           </div>
         </div>
 
@@ -204,22 +209,12 @@ export default function Footer({
               </li>
               <li>
                 <a href="#what-we-can-do" style={{ color: 'inherit', textDecoration: 'none' }}>
-                  What We Can Do
-                </a>
-              </li>
-              <li>
-                <a href="#mock-types" style={{ color: 'inherit', textDecoration: 'none' }}>
-                  What Kind of Mocks We Can Take
+                  What We Can Do & Mock Tracks
                 </a>
               </li>
               <li>
                 <a href="#helpful-impact" style={{ color: 'inherit', textDecoration: 'none' }}>
                   How Many Found Us Helpful
-                </a>
-              </li>
-              <li>
-                <a href="#colleges" style={{ color: 'inherit', textDecoration: 'none' }}>
-                  Which Colleges Tied Up With Us
                 </a>
               </li>
               <li>

@@ -37,8 +37,8 @@ export default function ProblemSolution() {
 
   const solutions = [
     {
-      title: 'FAANG & Tier-1 Corporate Mirror',
-      desc: 'We simulate the exact intensity, unscripted problem variants, and live debugging drills used by top engineering organizations.',
+      title: 'Practical Startup Engineering Mirror',
+      desc: 'We simulate the exact intensity, unscripted problem variants, and live debugging drills used by modern tech startups and product companies.',
       badge: 'Real-world Bar',
     },
     {
@@ -52,8 +52,8 @@ export default function ProblemSolution() {
       badge: 'Actionable Remediation',
     },
     {
-      title: 'Placement Conversion Surges by +40%',
-      desc: 'Institutes showcase verified CandiDev corporate readiness scorecards to hiring partners, securing direct shortlist privileges and higher package offers.',
+      title: 'Measurable Placement Readiness',
+      desc: 'Institutes showcase verified CandiDev candidate readiness scorecards to visiting hiring partners, giving students confidence and clarity.',
       badge: 'Direct Placements',
     },
   ];

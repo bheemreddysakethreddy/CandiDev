@@ -11,12 +11,10 @@ import {
 
 interface NavbarProps {
   onOpenBooking: () => void;
-  onNavigateToDashboard: () => void;
 }
 
 export default function Navbar({
   onOpenBooking,
-  onNavigateToDashboard,
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,10 +29,8 @@ export default function Navbar({
 
   const navLinks = [
     { name: 'Who We Are', href: '#who-we-are' },
-    { name: 'What We Can Do', href: '#what-we-can-do' },
-    { name: 'Mock Types', href: '#mock-types' },
+    { name: 'What We Can Do & Mocks', href: '#what-we-can-do' },
     { name: 'Impact & Results', href: '#helpful-impact' },
-    { name: 'Colleges Tied Up', href: '#colleges' },
     { name: 'Our Flow', href: '#our-flow' },
     { name: 'Why Choose Us', href: '#why-choose-us' },
     { name: 'Connect', href: '#connect-channels' },
