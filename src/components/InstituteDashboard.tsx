@@ -4,19 +4,15 @@ import React, { useState } from 'react';
 import {
   Users,
   Search,
-  Filter,
   Download,
   CheckCircle2,
   AlertTriangle,
   XCircle,
   Eye,
-  BarChart2,
   TrendingUp,
-  FileSpreadsheet,
-  Building,
   GraduationCap,
 } from 'lucide-react';
-import { COHORTS_DATA, Cohort, Student } from '@/data/mockData';
+import { COHORTS_DATA, Student } from '@/data/mockData';
 
 interface InstituteDashboardProps {
   onOpenScorecard: (student: Student) => void;
@@ -35,7 +31,6 @@ export default function InstituteDashboard({
   const selectedCohort =
     COHORTS_DATA.find((c) => c.id === selectedCohortId) || COHORTS_DATA[0];
 
-  // If cohort-2 or 3 is picked, use generated fallback students if empty
   const activeStudents: Student[] =
     selectedCohort.students.length > 0
       ? selectedCohort.students
@@ -68,7 +63,7 @@ export default function InstituteDashboard({
   };
 
   return (
-    <section id="portal" className="section" style={{ position: 'relative' }}>
+    <section id="portal" className="section" style={{ backgroundColor: '#ffffff' }}>
       <div className="container">
         {/* Toast Alert */}
         {toastMessage && (
@@ -77,28 +72,28 @@ export default function InstituteDashboard({
               position: 'fixed',
               bottom: '2rem',
               right: '2rem',
-              background: '#0f172a',
-              border: '1px solid #10b981',
-              color: '#34d399',
+              background: '#ffffff',
+              border: '1px solid var(--burgundy-accent)',
+              color: 'var(--burgundy-accent)',
               padding: '0.8rem 1.4rem',
               borderRadius: 'var(--radius-md)',
-              boxShadow: 'var(--shadow-lg)',
+              boxShadow: 'var(--shadow-md)',
               zIndex: 9999,
               display: 'flex',
               alignItems: 'center',
               gap: '0.6rem',
               fontSize: '0.88rem',
-              fontWeight: 600,
+              fontWeight: 700,
             }}
           >
-            <CheckCircle2 size={18} />
+            <CheckCircle2 size={18} color="var(--burgundy-accent)" />
             <span>{toastMessage}</span>
           </div>
         )}
 
         <div className="section-header">
           <div className="section-tag">
-            <GraduationCap size={14} />
+            <GraduationCap size={14} color="var(--burgundy-accent)" />
             <span>Institute Placement Intelligence</span>
           </div>
           <h2 className="section-title">
@@ -111,14 +106,14 @@ export default function InstituteDashboard({
           </p>
         </div>
 
-        {/* Dashboard Shell */}
+        {/* Dashboard Shell - Crisp White Light Theme */}
         <div
           style={{
-            background: 'var(--bg-secondary)',
+            background: '#ffffff',
             borderRadius: 'var(--radius-xl)',
             border: '1px solid var(--border-medium)',
-            padding: '2rem',
-            boxShadow: 'var(--shadow-lg)',
+            padding: '2.2rem',
+            boxShadow: 'var(--shadow-md)',
           }}
         >
           {/* Top Control Bar: Cohort Switcher & Export */}
@@ -138,7 +133,7 @@ export default function InstituteDashboard({
               <div
                 style={{
                   fontSize: '0.75rem',
-                  fontWeight: 600,
+                  fontWeight: 700,
                   color: 'var(--text-muted)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em',
@@ -152,12 +147,12 @@ export default function InstituteDashboard({
                   value={selectedCohortId}
                   onChange={(e) => setSelectedCohortId(e.target.value)}
                   style={{
-                    background: 'rgba(30, 41, 59, 0.8)',
+                    background: '#ffffff',
                     border: '1px solid var(--border-medium)',
-                    color: '#ffffff',
+                    color: 'var(--text-heading)',
                     padding: '0.6rem 1.2rem',
                     borderRadius: 'var(--radius-md)',
-                    fontSize: '1rem',
+                    fontSize: '0.98rem',
                     fontWeight: 700,
                     outline: 'none',
                     cursor: 'pointer',
@@ -172,11 +167,12 @@ export default function InstituteDashboard({
                 <span
                   style={{
                     fontSize: '0.8rem',
-                    color: '#38bdf8',
-                    background: 'rgba(56, 189, 248, 0.1)',
+                    color: 'var(--burgundy-accent)',
+                    background: 'var(--burgundy-soft)',
+                    border: '1px solid var(--burgundy-border)',
                     padding: '0.3rem 0.7rem',
                     borderRadius: 'var(--radius-full)',
-                    fontWeight: 600,
+                    fontWeight: 700,
                   }}
                 >
                   {selectedCohort.institute}
@@ -193,7 +189,7 @@ export default function InstituteDashboard({
                   fontSize: '0.85rem',
                 }}
               >
-                <Download size={15} />
+                <Download size={15} color="var(--burgundy-accent)" />
                 <span>Export Hiring Partner Dossier</span>
               </button>
               <button
@@ -222,17 +218,17 @@ export default function InstituteDashboard({
               className="glass-card"
               style={{
                 padding: '1.2rem 1.5rem',
-                borderLeft: '4px solid #38bdf8',
+                borderLeft: '4px solid var(--burgundy-accent)',
               }}
             >
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                 Average Corporate Readiness
               </div>
               <div
                 style={{
                   fontSize: '2rem',
                   fontWeight: 800,
-                  color: '#38bdf8',
+                  color: 'var(--burgundy-accent)',
                   fontFamily: 'var(--font-code)',
                   marginTop: '0.2rem',
                 }}
@@ -242,11 +238,12 @@ export default function InstituteDashboard({
               <div
                 style={{
                   fontSize: '0.75rem',
-                  color: '#34d399',
+                  color: '#059669',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.2rem',
                   marginTop: '0.2rem',
+                  fontWeight: 600,
                 }}
               >
                 <TrendingUp size={13} /> +18% vs un-mocked baseline
@@ -257,17 +254,17 @@ export default function InstituteDashboard({
               className="glass-card"
               style={{
                 padding: '1.2rem 1.5rem',
-                borderLeft: '4px solid #10b981',
+                borderLeft: '4px solid #059669',
               }}
             >
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                 Corporate Ready (Passed Bar)
               </div>
               <div
                 style={{
                   fontSize: '2rem',
                   fontWeight: 800,
-                  color: '#34d399',
+                  color: '#059669',
                   fontFamily: 'var(--font-code)',
                   marginTop: '0.2rem',
                 }}
@@ -283,17 +280,17 @@ export default function InstituteDashboard({
               className="glass-card"
               style={{
                 padding: '1.2rem 1.5rem',
-                borderLeft: '4px solid #f59e0b',
+                borderLeft: '4px solid #d97706',
               }}
             >
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                 Needs 7-Day Polish
               </div>
               <div
                 style={{
                   fontSize: '2rem',
                   fontWeight: 800,
-                  color: '#fbbf24',
+                  color: '#d97706',
                   fontFamily: 'var(--font-code)',
                   marginTop: '0.2rem',
                 }}
@@ -309,17 +306,17 @@ export default function InstituteDashboard({
               className="glass-card"
               style={{
                 padding: '1.2rem 1.5rem',
-                borderLeft: '4px solid #f43f5e',
+                borderLeft: '4px solid #e11d48',
               }}
             >
-              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                 At Risk Candidates
               </div>
               <div
                 style={{
                   fontSize: '2rem',
                   fontWeight: 800,
-                  color: '#fb7185',
+                  color: '#e11d48',
                   fontFamily: 'var(--font-code)',
                   marginTop: '0.2rem',
                 }}
@@ -336,7 +333,7 @@ export default function InstituteDashboard({
           <div
             style={{
               padding: '1.5rem',
-              background: 'rgba(15, 23, 42, 0.5)',
+              background: '#faf8f9',
               borderRadius: 'var(--radius-lg)',
               border: '1px solid var(--border-subtle)',
               marginBottom: '2rem',
@@ -346,7 +343,7 @@ export default function InstituteDashboard({
               style={{
                 fontSize: '0.95rem',
                 fontWeight: 700,
-                color: 'var(--text-primary)',
+                color: 'var(--text-heading)',
                 marginBottom: '1rem',
               }}
             >
@@ -368,15 +365,15 @@ export default function InstituteDashboard({
                     marginBottom: '0.3rem',
                   }}
                 >
-                  <span style={{ color: 'var(--text-secondary)' }}>
+                  <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
                     DSA & Algorithmic Deconstruction
                   </span>
-                  <span style={{ fontWeight: 700, color: '#38bdf8' }}>84%</span>
+                  <span style={{ fontWeight: 700, color: 'var(--burgundy-accent)' }}>84%</span>
                 </div>
                 <div
                   style={{
                     height: '6px',
-                    background: 'rgba(255,255,255,0.08)',
+                    background: '#e5e7eb',
                     borderRadius: '4px',
                     overflow: 'hidden',
                   }}
@@ -385,7 +382,7 @@ export default function InstituteDashboard({
                     style={{
                       width: '84%',
                       height: '100%',
-                      background: 'linear-gradient(90deg, #06b6d4, #3b82f6)',
+                      background: 'var(--burgundy-accent)',
                     }}
                   />
                 </div>
@@ -400,15 +397,15 @@ export default function InstituteDashboard({
                     marginBottom: '0.3rem',
                   }}
                 >
-                  <span style={{ color: 'var(--text-secondary)' }}>
+                  <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
                     System Architecture & Clean Code
                   </span>
-                  <span style={{ fontWeight: 700, color: '#34d399' }}>89%</span>
+                  <span style={{ fontWeight: 700, color: '#059669' }}>89%</span>
                 </div>
                 <div
                   style={{
                     height: '6px',
-                    background: 'rgba(255,255,255,0.08)',
+                    background: '#e5e7eb',
                     borderRadius: '4px',
                     overflow: 'hidden',
                   }}
@@ -417,7 +414,7 @@ export default function InstituteDashboard({
                     style={{
                       width: '89%',
                       height: '100%',
-                      background: 'linear-gradient(90deg, #10b981, #059669)',
+                      background: '#059669',
                     }}
                   />
                 </div>
@@ -432,15 +429,15 @@ export default function InstituteDashboard({
                     marginBottom: '0.3rem',
                   }}
                 >
-                  <span style={{ color: 'var(--text-secondary)' }}>
+                  <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
                     Behavioral Articulation (STAR)
                   </span>
-                  <span style={{ fontWeight: 700, color: '#fbbf24' }}>76%</span>
+                  <span style={{ fontWeight: 700, color: '#d97706' }}>76%</span>
                 </div>
                 <div
                   style={{
                     height: '6px',
-                    background: 'rgba(255,255,255,0.08)',
+                    background: '#e5e7eb',
                     borderRadius: '4px',
                     overflow: 'hidden',
                   }}
@@ -449,7 +446,7 @@ export default function InstituteDashboard({
                     style={{
                       width: '76%',
                       height: '100%',
-                      background: 'linear-gradient(90deg, #f59e0b, #d97706)',
+                      background: '#d97706',
                     }}
                   />
                 </div>
@@ -464,15 +461,15 @@ export default function InstituteDashboard({
                     marginBottom: '0.3rem',
                   }}
                 >
-                  <span style={{ color: 'var(--text-secondary)' }}>
+                  <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>
                     Real-time Error Debugging
                   </span>
-                  <span style={{ fontWeight: 700, color: '#a78bfa' }}>81%</span>
+                  <span style={{ fontWeight: 700, color: 'var(--burgundy-dark)' }}>81%</span>
                 </div>
                 <div
                   style={{
                     height: '6px',
-                    background: 'rgba(255,255,255,0.08)',
+                    background: '#e5e7eb',
                     borderRadius: '4px',
                     overflow: 'hidden',
                   }}
@@ -481,7 +478,7 @@ export default function InstituteDashboard({
                     style={{
                       width: '81%',
                       height: '100%',
-                      background: 'linear-gradient(90deg, #8b5cf6, #6366f1)',
+                      background: 'var(--burgundy-dark)',
                     }}
                   />
                 </div>
@@ -526,8 +523,8 @@ export default function InstituteDashboard({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 style={{
                   width: '100%',
-                  background: 'rgba(15, 23, 42, 0.8)',
-                  border: '1px solid var(--border-subtle)',
+                  background: '#ffffff',
+                  border: '1px solid var(--border-medium)',
                   borderRadius: 'var(--radius-md)',
                   padding: '0.55rem 1rem 0.55rem 2.6rem',
                   fontSize: '0.85rem',
@@ -547,16 +544,16 @@ export default function InstituteDashboard({
                     style={{
                       background:
                         statusFilter === status
-                          ? 'rgba(56, 189, 248, 0.18)'
-                          : 'rgba(255, 255, 255, 0.04)',
+                          ? 'var(--burgundy-accent)'
+                          : '#ffffff',
                       border: '1px solid',
                       borderColor:
                         statusFilter === status
-                          ? 'var(--cyan-glow)'
-                          : 'rgba(255, 255, 255, 0.08)',
+                          ? 'var(--burgundy-accent)'
+                          : 'var(--border-medium)',
                       color:
                         statusFilter === status
-                          ? '#38bdf8'
+                          ? '#ffffff'
                           : 'var(--text-secondary)',
                       padding: '0.35rem 0.85rem',
                       borderRadius: 'var(--radius-full)',
@@ -585,7 +582,7 @@ export default function InstituteDashboard({
               <thead>
                 <tr
                   style={{
-                    borderBottom: '1px solid var(--border-subtle)',
+                    borderBottom: '2px solid var(--border-subtle)',
                     color: 'var(--text-muted)',
                     fontSize: '0.75rem',
                     textTransform: 'uppercase',
@@ -607,12 +604,11 @@ export default function InstituteDashboard({
                   <tr
                     key={student.id}
                     style={{
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                      borderBottom: '1px solid var(--border-subtle)',
                       transition: 'background 0.15s',
                     }}
                     onMouseEnter={(e) =>
-                      (e.currentTarget.style.backgroundColor =
-                        'rgba(255, 255, 255, 0.02)')
+                      (e.currentTarget.style.backgroundColor = 'var(--burgundy-soft)')
                     }
                     onMouseLeave={(e) =>
                       (e.currentTarget.style.backgroundColor = 'transparent')
@@ -629,11 +625,11 @@ export default function InstituteDashboard({
                             height: '36px',
                             borderRadius: '50%',
                             objectFit: 'cover',
-                            border: '1px solid var(--border-accent)',
+                            border: '1px solid var(--border-medium)',
                           }}
                         />
                         <div>
-                          <div style={{ fontWeight: 700, color: 'var(--text-primary)' }}>
+                          <div style={{ fontWeight: 700, color: 'var(--text-heading)' }}>
                             {student.name}
                           </div>
                           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -660,7 +656,7 @@ export default function InstituteDashboard({
                           style={{
                             width: '80px',
                             height: '6px',
-                            background: 'rgba(255,255,255,0.08)',
+                            background: '#e5e7eb',
                             borderRadius: '3px',
                             overflow: 'hidden',
                           }}
@@ -671,10 +667,10 @@ export default function InstituteDashboard({
                               height: '100%',
                               background:
                                 student.readinessScore >= 85
-                                  ? '#10b981'
+                                  ? '#059669'
                                   : student.readinessScore >= 70
-                                  ? '#f59e0b'
-                                  : '#f43f5e',
+                                  ? '#d97706'
+                                  : '#e11d48',
                             }}
                           />
                         </div>
@@ -684,10 +680,10 @@ export default function InstituteDashboard({
                             fontFamily: 'var(--font-code)',
                             color:
                               student.readinessScore >= 85
-                                ? '#34d399'
+                                ? '#059669'
                                 : student.readinessScore >= 70
-                                ? '#fbbf24'
-                                : '#fb7185',
+                                ? '#d97706'
+                                : '#e11d48',
                           }}
                         >
                           {student.readinessScore}%
@@ -725,7 +721,7 @@ export default function InstituteDashboard({
                           gap: '0.35rem',
                         }}
                       >
-                        <Eye size={13} color="#38bdf8" />
+                        <Eye size={13} color="var(--burgundy-accent)" />
                         <span>Scorecard</span>
                       </button>
                     </td>

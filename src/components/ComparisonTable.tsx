@@ -1,16 +1,16 @@
 'use client';
 
 import React from 'react';
-import { Check, X, ShieldAlert, Sparkles } from 'lucide-react';
+import { Check, X, Sparkles } from 'lucide-react';
 import { COMPARISON_ROWS } from '@/data/mockData';
 
 export default function ComparisonTable() {
   return (
-    <section id="comparison" className="section" style={{ position: 'relative' }}>
+    <section id="comparison" className="section" style={{ backgroundColor: '#ffffff' }}>
       <div className="container">
         <div className="section-header">
           <div className="section-tag">
-            <Sparkles size={14} />
+            <Sparkles size={14} color="var(--burgundy-accent)" />
             <span>Benchmark Comparison</span>
           </div>
           <h2 className="section-title">
@@ -22,14 +22,14 @@ export default function ComparisonTable() {
           </p>
         </div>
 
-        {/* Table Container */}
+        {/* Table Container - Clean White Light Mode */}
         <div
           style={{
-            background: 'var(--bg-secondary)',
+            background: '#ffffff',
             borderRadius: 'var(--radius-xl)',
             border: '1px solid var(--border-medium)',
             overflow: 'hidden',
-            boxShadow: 'var(--shadow-lg)',
+            boxShadow: 'var(--shadow-md)',
           }}
         >
           <div style={{ overflowX: 'auto' }}>
@@ -41,11 +41,11 @@ export default function ComparisonTable() {
               }}
             >
               <thead>
-                <tr style={{ background: 'rgba(15, 23, 42, 0.95)' }}>
+                <tr style={{ background: '#f8f6f7' }}>
                   <th
                     style={{
                       padding: '1.2rem 1.5rem',
-                      fontSize: '0.88rem',
+                      fontSize: '0.85rem',
                       fontWeight: 700,
                       color: 'var(--text-muted)',
                       textTransform: 'uppercase',
@@ -58,9 +58,9 @@ export default function ComparisonTable() {
                   <th
                     style={{
                       padding: '1.2rem 1.5rem',
-                      fontSize: '0.88rem',
+                      fontSize: '0.85rem',
                       fontWeight: 700,
-                      color: '#fb7185',
+                      color: '#9f1239',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
                       width: '37%',
@@ -72,14 +72,14 @@ export default function ComparisonTable() {
                   <th
                     style={{
                       padding: '1.2rem 1.5rem',
-                      fontSize: '0.88rem',
+                      fontSize: '0.85rem',
                       fontWeight: 700,
-                      color: '#38bdf8',
+                      color: 'var(--burgundy-accent)',
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
                       width: '37%',
-                      background: 'rgba(56, 189, 248, 0.08)',
-                      borderLeft: '1px solid var(--border-accent)',
+                      background: 'var(--burgundy-soft)',
+                      borderLeft: '1px solid var(--burgundy-border)',
                     }}
                   >
                     CandiDev Corporate Partner
@@ -91,11 +91,11 @@ export default function ComparisonTable() {
                   <tr
                     key={idx}
                     style={{
-                      borderBottom: '1px solid rgba(255, 255, 255, 0.04)',
+                      borderBottom: '1px solid var(--border-subtle)',
                       background:
                         idx % 2 === 0
-                          ? 'transparent'
-                          : 'rgba(255, 255, 255, 0.01)',
+                          ? '#ffffff'
+                          : '#fcfbfa',
                     }}
                   >
                     {/* Dimension */}
@@ -104,7 +104,7 @@ export default function ComparisonTable() {
                         padding: '1.2rem 1.5rem',
                         fontWeight: 700,
                         fontSize: '0.92rem',
-                        color: 'var(--text-primary)',
+                        color: 'var(--text-heading)',
                       }}
                     >
                       {row.feature}
@@ -123,7 +123,7 @@ export default function ComparisonTable() {
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                         <X
                           size={16}
-                          color="#f43f5e"
+                          color="#e11d48"
                           style={{ flexShrink: 0, marginTop: '3px' }}
                         />
                         <span>{row.instituteInternal}</span>
@@ -135,17 +135,17 @@ export default function ComparisonTable() {
                       style={{
                         padding: '1.2rem 1.5rem',
                         fontSize: '0.88rem',
-                        color: '#f8fafc',
-                        background: 'rgba(56, 189, 248, 0.04)',
-                        borderLeft: '1px solid var(--border-accent)',
-                        fontWeight: 500,
+                        color: 'var(--text-heading)',
+                        background: 'rgba(253, 242, 244, 0.4)',
+                        borderLeft: '1px solid var(--burgundy-border)',
+                        fontWeight: 600,
                         lineHeight: 1.5,
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
                         <Check
                           size={16}
-                          color="#34d399"
+                          color="#059669"
                           style={{ flexShrink: 0, marginTop: '3px' }}
                         />
                         <span>{row.candiDev}</span>

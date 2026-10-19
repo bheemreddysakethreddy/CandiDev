@@ -5,11 +5,8 @@ import {
   Calculator,
   Clock,
   TrendingUp,
-  DollarSign,
-  Sparkles,
   ArrowRight,
   ShieldCheck,
-  Check,
 } from 'lucide-react';
 
 interface RoiCalculatorProps {
@@ -51,11 +48,11 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
   const averagePlacedCtcBoost = '₹3.5 - 6.2 LPA';
 
   return (
-    <section id="calculator" className="section" style={{ position: 'relative' }}>
+    <section id="calculator" className="section" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container">
         <div className="section-header">
           <div className="section-tag">
-            <Calculator size={14} />
+            <Calculator size={14} color="var(--burgundy-accent)" />
             <span>Interactive ROI Estimator</span>
           </div>
           <h2 className="section-title">
@@ -67,16 +64,16 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
           </p>
         </div>
 
-        {/* Calculator Card */}
+        {/* Calculator Card - Clean White Light Mode */}
         <div
           style={{
             maxWidth: '1000px',
             margin: '0 auto',
-            background: 'var(--bg-secondary)',
+            background: '#ffffff',
             borderRadius: 'var(--radius-xl)',
             border: '1px solid var(--border-medium)',
             padding: '2.5rem',
-            boxShadow: 'var(--shadow-lg), var(--shadow-glow-indigo)',
+            boxShadow: 'var(--shadow-md)',
           }}
         >
           <div
@@ -103,21 +100,21 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                     style={{
                       fontSize: '0.95rem',
                       fontWeight: 700,
-                      color: 'var(--text-primary)',
+                      color: 'var(--text-heading)',
                     }}
                   >
                     Number of Students in Cohort:
                   </label>
                   <span
                     style={{
-                      fontSize: '1.35rem',
+                      fontSize: '1.25rem',
                       fontWeight: 800,
-                      color: '#38bdf8',
+                      color: 'var(--burgundy-accent)',
                       fontFamily: 'var(--font-code)',
-                      background: 'rgba(56, 189, 248, 0.1)',
+                      background: 'var(--burgundy-soft)',
                       padding: '0.2rem 0.8rem',
                       borderRadius: 'var(--radius-md)',
-                      border: '1px solid rgba(56, 189, 248, 0.3)',
+                      border: '1px solid var(--burgundy-border)',
                     }}
                   >
                     {batchSize} Students
@@ -133,8 +130,8 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                   onChange={(e) => setBatchSize(Number(e.target.value))}
                   style={{
                     width: '100%',
-                    accentColor: '#38bdf8',
-                    height: '8px',
+                    accentColor: '#881337',
+                    height: '7px',
                     borderRadius: '4px',
                     cursor: 'pointer',
                   }}
@@ -162,7 +159,7 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                     display: 'block',
                     fontSize: '0.95rem',
                     fontWeight: 700,
-                    color: 'var(--text-primary)',
+                    color: 'var(--text-heading)',
                     marginBottom: '0.8rem',
                   }}
                 >
@@ -199,14 +196,14 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                         border: '1px solid',
                         borderColor:
                           selectedTier === tier.key
-                            ? 'var(--cyan-glow)'
-                            : 'var(--border-subtle)',
+                            ? 'var(--burgundy-accent)'
+                            : 'var(--border-medium)',
                         background:
                           selectedTier === tier.key
-                            ? 'rgba(56, 189, 248, 0.12)'
-                            : 'rgba(255, 255, 255, 0.02)',
+                            ? 'var(--burgundy-soft)'
+                            : '#ffffff',
                         cursor: 'pointer',
-                        transition: 'all 0.2s',
+                        transition: 'all 0.15s ease',
                       }}
                     >
                       <div
@@ -223,24 +220,24 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                             fontSize: '0.92rem',
                             color:
                               selectedTier === tier.key
-                                ? '#38bdf8'
-                                : 'var(--text-primary)',
+                                ? 'var(--burgundy-accent)'
+                                : 'var(--text-heading)',
                           }}
                         >
                           {tier.title}
                         </div>
                         <span
                           style={{
-                            fontSize: '0.82rem',
+                            fontSize: '0.85rem',
                             fontWeight: 700,
-                            color: '#34d399',
+                            color: 'var(--burgundy-accent)',
                             fontFamily: 'var(--font-code)',
                           }}
                         >
                           {tier.price}
                         </span>
                       </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
                         {tier.desc}
                       </div>
                     </div>
@@ -252,14 +249,13 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
             {/* Right Column: Projected ROI & Placement Impact Card */}
             <div
               style={{
-                background: 'rgba(15, 23, 42, 0.9)',
+                background: '#faf8f9',
                 borderRadius: 'var(--radius-lg)',
-                border: '1px solid var(--border-accent)',
+                border: '1px solid var(--border-medium)',
                 padding: '1.8rem',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                boxShadow: 'var(--shadow-md)',
               }}
             >
               <div>
@@ -267,7 +263,7 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                   style={{
                     fontSize: '0.75rem',
                     textTransform: 'uppercase',
-                    color: '#38bdf8',
+                    color: 'var(--burgundy-accent)',
                     fontWeight: 700,
                     letterSpacing: '0.05em',
                     marginBottom: '0.4rem',
@@ -277,9 +273,9 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                 </div>
                 <h3
                   style={{
-                    fontSize: '1.4rem',
+                    fontSize: '1.35rem',
                     fontWeight: 800,
-                    color: '#ffffff',
+                    color: 'var(--text-heading)',
                     marginBottom: '1.4rem',
                   }}
                 >
@@ -287,14 +283,15 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                 </h3>
 
                 {/* 3 Metric Output Blocks */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div
                     style={{
                       display: 'flex',
                       alignItems: 'center',
                       gap: '1rem',
                       padding: '0.8rem 1rem',
-                      background: 'rgba(255, 255, 255, 0.03)',
+                      background: '#ffffff',
+                      border: '1px solid var(--border-subtle)',
                       borderRadius: 'var(--radius-md)',
                     }}
                   >
@@ -302,17 +299,17 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                       style={{
                         padding: '0.6rem',
                         borderRadius: '8px',
-                        background: 'rgba(56, 189, 248, 0.15)',
+                        background: 'var(--burgundy-soft)',
                       }}
                     >
-                      <Clock size={20} color="#38bdf8" />
+                      <Clock size={20} color="var(--burgundy-accent)" />
                     </div>
                     <div>
                       <div
                         style={{
                           fontSize: '1.4rem',
                           fontWeight: 800,
-                          color: '#38bdf8',
+                          color: 'var(--burgundy-accent)',
                           fontFamily: 'var(--font-code)',
                         }}
                       >
@@ -330,7 +327,8 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                       alignItems: 'center',
                       gap: '1rem',
                       padding: '0.8rem 1rem',
-                      background: 'rgba(255, 255, 255, 0.03)',
+                      background: '#ffffff',
+                      border: '1px solid var(--border-subtle)',
                       borderRadius: 'var(--radius-md)',
                     }}
                   >
@@ -338,17 +336,17 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                       style={{
                         padding: '0.6rem',
                         borderRadius: '8px',
-                        background: 'rgba(16, 185, 129, 0.15)',
+                        background: 'var(--emerald-soft)',
                       }}
                     >
-                      <TrendingUp size={20} color="#34d399" />
+                      <TrendingUp size={20} color="#059669" />
                     </div>
                     <div>
                       <div
                         style={{
                           fontSize: '1.4rem',
                           fontWeight: 800,
-                          color: '#34d399',
+                          color: '#059669',
                           fontFamily: 'var(--font-code)',
                         }}
                       >
@@ -366,7 +364,8 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                       alignItems: 'center',
                       gap: '1rem',
                       padding: '0.8rem 1rem',
-                      background: 'rgba(255, 255, 255, 0.03)',
+                      background: '#ffffff',
+                      border: '1px solid var(--border-subtle)',
                       borderRadius: 'var(--radius-md)',
                     }}
                   >
@@ -374,17 +373,17 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                       style={{
                         padding: '0.6rem',
                         borderRadius: '8px',
-                        background: 'rgba(245, 158, 11, 0.15)',
+                        background: 'var(--amber-soft)',
                       }}
                     >
-                      <ShieldCheck size={20} color="#fbbf24" />
+                      <ShieldCheck size={20} color="#d97706" />
                     </div>
                     <div>
                       <div
                         style={{
                           fontSize: '1.25rem',
                           fontWeight: 800,
-                          color: '#fbbf24',
+                          color: '#d97706',
                           fontFamily: 'var(--font-code)',
                         }}
                       >
@@ -403,7 +402,7 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                 style={{
                   marginTop: '1.8rem',
                   paddingTop: '1.2rem',
-                  borderTop: '1px solid var(--border-subtle)',
+                  borderTop: '1px solid var(--border-medium)',
                 }}
               >
                 <div
@@ -414,7 +413,7 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                     marginBottom: '1rem',
                   }}
                 >
-                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                  <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
                     Total Cohort Investment:
                   </span>
                   <div style={{ textAlign: 'right' }}>
@@ -422,13 +421,13 @@ export default function RoiCalculator({ onOpenBooking }: RoiCalculatorProps) {
                       style={{
                         fontSize: '1.6rem',
                         fontWeight: 900,
-                        color: '#ffffff',
+                        color: 'var(--text-heading)',
                         fontFamily: 'var(--font-code)',
                       }}
                     >
                       ₹{totalCost.toLocaleString('en-IN')}
                     </div>
-                    <div style={{ fontSize: '0.72rem', color: '#34d399' }}>
+                    <div style={{ fontSize: '0.72rem', color: '#059669', fontWeight: 600 }}>
                       (Tiered Institute Volume Discount Applied)
                     </div>
                   </div>

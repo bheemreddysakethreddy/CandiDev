@@ -3,15 +3,11 @@
 import React from 'react';
 import {
   X,
-  Award,
   CheckCircle2,
   AlertTriangle,
-  FileText,
   Printer,
   ShieldCheck,
   TrendingUp,
-  UserCheck,
-  Calendar,
 } from 'lucide-react';
 import { Student } from '@/data/mockData';
 
@@ -40,9 +36,9 @@ export default function ScorecardModal({
           maxWidth: '820px',
           maxHeight: '90vh',
           overflowY: 'auto',
-          background: 'rgba(11, 16, 29, 0.98)',
+          background: '#ffffff',
           border: '1px solid var(--border-medium)',
-          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.85), 0 0 30px rgba(56, 189, 248, 0.25)',
+          boxShadow: 'var(--shadow-lg)',
           padding: '2.2rem',
           position: 'relative',
         }}
@@ -54,7 +50,7 @@ export default function ScorecardModal({
             position: 'absolute',
             top: '1.2rem',
             right: '1.2rem',
-            background: 'rgba(255, 255, 255, 0.06)',
+            background: '#f3f4f6',
             border: '1px solid var(--border-subtle)',
             borderRadius: '50%',
             width: '36px',
@@ -91,8 +87,7 @@ export default function ScorecardModal({
                 height: '64px',
                 borderRadius: '50%',
                 objectFit: 'cover',
-                border: '2px solid #38bdf8',
-                boxShadow: '0 0 16px rgba(56, 189, 248, 0.4)',
+                border: '2px solid var(--burgundy-accent)',
               }}
             />
             <div>
@@ -104,7 +99,7 @@ export default function ScorecardModal({
                   marginBottom: '0.2rem',
                 }}
               >
-                <h3 style={{ fontSize: '1.45rem', fontWeight: 800 }}>
+                <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-heading)' }}>
                   {student.name}
                 </h3>
                 {student.status === 'Corporate Ready' && (
@@ -124,7 +119,7 @@ export default function ScorecardModal({
                 )}
               </div>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                Target Track: <strong style={{ color: '#fff' }}>{student.targetRole}</strong> • {student.track}
+                Target Track: <strong style={{ color: 'var(--text-heading)' }}>{student.targetRole}</strong> • {student.track}
               </p>
               <div
                 style={{
@@ -144,14 +139,14 @@ export default function ScorecardModal({
               textAlign: 'center',
               padding: '0.8rem 1.6rem',
               borderRadius: 'var(--radius-lg)',
-              background: 'rgba(15, 23, 42, 0.8)',
-              border: '1px solid var(--border-accent)',
+              background: 'var(--burgundy-soft)',
+              border: '1px solid var(--burgundy-border)',
             }}
           >
             <div
               style={{
                 fontSize: '0.72rem',
-                color: 'var(--text-muted)',
+                color: 'var(--burgundy-accent)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 fontWeight: 700,
@@ -165,10 +160,10 @@ export default function ScorecardModal({
                 fontWeight: 900,
                 color:
                   student.readinessScore >= 85
-                    ? '#34d399'
+                    ? '#059669'
                     : student.readinessScore >= 70
-                    ? '#fbbf24'
-                    : '#fb7185',
+                    ? '#d97706'
+                    : '#e11d48',
                 fontFamily: 'var(--font-code)',
                 lineHeight: 1.1,
               }}
@@ -180,7 +175,7 @@ export default function ScorecardModal({
               style={{
                 fontSize: '0.75rem',
                 fontWeight: 700,
-                color: student.readinessScore >= 85 ? '#34d399' : '#fbbf24',
+                color: student.readinessScore >= 85 ? '#059669' : '#d97706',
               }}
             >
               {student.readinessScore >= 85
@@ -213,20 +208,20 @@ export default function ScorecardModal({
             }}
           >
             {[
-              { label: 'DSA & Big-O Optimization', val: student.metrics.dsa, color: '#38bdf8' },
-              { label: 'System Architecture & Scalability', val: student.metrics.systemDesign, color: '#818cf8' },
-              { label: 'Production Code Hygiene', val: student.metrics.codeQuality, color: '#34d399' },
-              { label: 'Executive STAR Communication', val: student.metrics.communication, color: '#fbbf24' },
-              { label: 'Live Debugging & Recovery', val: student.metrics.debugging, color: '#f472b6' },
-              { label: 'Behavioral Poise Under Pressure', val: student.metrics.behavioral, color: '#a78bfa' },
+              { label: 'DSA & Big-O Optimization', val: student.metrics.dsa, color: 'var(--burgundy-accent)' },
+              { label: 'System Architecture & Scalability', val: student.metrics.systemDesign, color: '#059669' },
+              { label: 'Production Code Hygiene', val: student.metrics.codeQuality, color: 'var(--burgundy-dark)' },
+              { label: 'Executive STAR Communication', val: student.metrics.communication, color: '#d97706' },
+              { label: 'Live Debugging & Recovery', val: student.metrics.debugging, color: '#701a31' },
+              { label: 'Behavioral Poise Under Pressure', val: student.metrics.behavioral, color: '#b45309' },
             ].map((metric, i) => (
               <div
                 key={i}
                 style={{
                   padding: '0.9rem',
-                  background: 'rgba(255, 255, 255, 0.03)',
+                  background: '#faf8f9',
                   borderRadius: 'var(--radius-md)',
-                  border: '1px solid rgba(255, 255, 255, 0.05)',
+                  border: '1px solid var(--border-subtle)',
                 }}
               >
                 <div
@@ -237,7 +232,7 @@ export default function ScorecardModal({
                     marginBottom: '0.4rem',
                   }}
                 >
-                  <span style={{ color: 'var(--text-secondary)' }}>{metric.label}</span>
+                  <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>{metric.label}</span>
                   <span
                     style={{
                       fontWeight: 700,
@@ -251,7 +246,7 @@ export default function ScorecardModal({
                 <div
                   style={{
                     height: '5px',
-                    background: 'rgba(255, 255, 255, 0.08)',
+                    background: '#e5e7eb',
                     borderRadius: '3px',
                     overflow: 'hidden',
                   }}
@@ -273,9 +268,9 @@ export default function ScorecardModal({
         <div
           style={{
             padding: '1.2rem',
-            background: 'rgba(56, 189, 248, 0.06)',
+            background: 'var(--burgundy-soft)',
             borderRadius: 'var(--radius-md)',
-            border: '1px solid rgba(56, 189, 248, 0.2)',
+            border: '1px solid var(--burgundy-border)',
             marginBottom: '1.8rem',
           }}
         >
@@ -284,7 +279,7 @@ export default function ScorecardModal({
               fontSize: '0.75rem',
               fontWeight: 700,
               textTransform: 'uppercase',
-              color: '#38bdf8',
+              color: 'var(--burgundy-accent)',
               letterSpacing: '0.05em',
               marginBottom: '0.4rem',
             }}
@@ -294,7 +289,7 @@ export default function ScorecardModal({
           <p
             style={{
               fontSize: '0.92rem',
-              color: '#f8fafc',
+              color: 'var(--text-heading)',
               lineHeight: 1.6,
               fontStyle: 'italic',
             }}
@@ -316,16 +311,16 @@ export default function ScorecardModal({
           <div
             style={{
               padding: '1.2rem',
-              background: 'rgba(16, 185, 129, 0.05)',
+              background: 'var(--emerald-soft)',
               borderRadius: 'var(--radius-md)',
-              border: '1px solid rgba(16, 185, 129, 0.2)',
+              border: '1px solid var(--emerald-border)',
             }}
           >
             <h5
               style={{
                 fontSize: '0.85rem',
                 fontWeight: 700,
-                color: '#34d399',
+                color: '#065f46',
                 marginBottom: '0.65rem',
                 display: 'flex',
                 alignItems: 'center',
@@ -347,7 +342,7 @@ export default function ScorecardModal({
                   key={i}
                   style={{
                     fontSize: '0.82rem',
-                    color: 'var(--text-secondary)',
+                    color: '#064e3b',
                     lineHeight: 1.5,
                   }}
                 >
@@ -361,16 +356,16 @@ export default function ScorecardModal({
           <div
             style={{
               padding: '1.2rem',
-              background: 'rgba(245, 158, 11, 0.05)',
+              background: 'var(--amber-soft)',
               borderRadius: 'var(--radius-md)',
-              border: '1px solid rgba(245, 158, 11, 0.2)',
+              border: '1px solid var(--amber-border)',
             }}
           >
             <h5
               style={{
                 fontSize: '0.85rem',
                 fontWeight: 700,
-                color: '#fbbf24',
+                color: '#92400e',
                 marginBottom: '0.65rem',
                 display: 'flex',
                 alignItems: 'center',
@@ -392,7 +387,7 @@ export default function ScorecardModal({
                   key={i}
                   style={{
                     fontSize: '0.82rem',
-                    color: 'var(--text-secondary)',
+                    color: '#78350f',
                     lineHeight: 1.5,
                   }}
                 >
@@ -407,7 +402,7 @@ export default function ScorecardModal({
         <div
           style={{
             padding: '1.2rem',
-            background: 'rgba(15, 23, 42, 0.7)',
+            background: '#faf8f9',
             borderRadius: 'var(--radius-md)',
             border: '1px solid var(--border-subtle)',
             marginBottom: '1.8rem',
@@ -417,7 +412,7 @@ export default function ScorecardModal({
             style={{
               fontSize: '0.85rem',
               fontWeight: 700,
-              color: '#38bdf8',
+              color: 'var(--burgundy-accent)',
               marginBottom: '0.6rem',
               display: 'flex',
               alignItems: 'center',
@@ -440,8 +435,9 @@ export default function ScorecardModal({
               >
                 <span
                   style={{
-                    background: 'rgba(56, 189, 248, 0.15)',
-                    color: '#38bdf8',
+                    background: 'var(--burgundy-soft)',
+                    color: 'var(--burgundy-accent)',
+                    border: '1px solid var(--burgundy-border)',
                     padding: '1px 6px',
                     borderRadius: '4px',
                     fontSize: '0.72rem',
@@ -470,10 +466,10 @@ export default function ScorecardModal({
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-            <ShieldCheck size={20} color="#34d399" />
+            <ShieldCheck size={20} color="#059669" />
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
               Verified CandiDev Corporate Token:{' '}
-              <span style={{ fontFamily: 'var(--font-code)', color: '#94a3b8' }}>
+              <span style={{ fontFamily: 'var(--font-code)', color: 'var(--text-primary)', fontWeight: 600 }}>
                 CD-2026-{student.id.toUpperCase()}-VERIFIED
               </span>
             </div>
@@ -485,7 +481,7 @@ export default function ScorecardModal({
               className="btn-secondary"
               style={{ padding: '0.55rem 1.1rem', fontSize: '0.85rem' }}
             >
-              <Printer size={15} />
+              <Printer size={15} color="var(--burgundy-accent)" />
               <span>Print / PDF Dossier</span>
             </button>
             <button

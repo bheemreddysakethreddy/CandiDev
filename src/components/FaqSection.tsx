@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronDown, HelpCircle, Sparkles } from 'lucide-react';
+import { ChevronDown, HelpCircle } from 'lucide-react';
 import { FAQS } from '@/data/mockData';
 
 export default function FaqSection() {
@@ -12,11 +12,11 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faqs" className="section" style={{ position: 'relative' }}>
+    <section id="faqs" className="section" style={{ backgroundColor: '#ffffff' }}>
       <div className="container">
         <div className="section-header">
           <div className="section-tag">
-            <HelpCircle size={14} />
+            <HelpCircle size={14} color="var(--burgundy-accent)" />
             <span>Institute Knowledge Base</span>
           </div>
           <h2 className="section-title">Frequently Asked Questions</h2>
@@ -26,7 +26,7 @@ export default function FaqSection() {
           </p>
         </div>
 
-        {/* FAQs Accordion List */}
+        {/* FAQs Accordion List - Clean Light Mode */}
         <div
           style={{
             maxWidth: '820px',
@@ -46,13 +46,13 @@ export default function FaqSection() {
                   padding: '1.2rem 1.6rem',
                   border: '1px solid',
                   borderColor: isOpen
-                    ? 'var(--cyan-glow)'
+                    ? 'var(--burgundy-border)'
                     : 'var(--border-subtle)',
                   background: isOpen
-                    ? 'rgba(16, 23, 42, 0.85)'
-                    : 'rgba(16, 23, 42, 0.55)',
+                    ? 'var(--burgundy-soft)'
+                    : '#ffffff',
                   cursor: 'pointer',
-                  transition: 'all 0.25s ease',
+                  transition: 'all 0.2s ease',
                 }}
                 onClick={() => toggleFaq(idx)}
               >
@@ -68,7 +68,7 @@ export default function FaqSection() {
                     style={{
                       fontSize: '1.05rem',
                       fontWeight: 700,
-                      color: isOpen ? '#38bdf8' : 'var(--text-primary)',
+                      color: isOpen ? 'var(--burgundy-accent)' : 'var(--text-heading)',
                       lineHeight: 1.4,
                     }}
                   >
@@ -77,8 +77,8 @@ export default function FaqSection() {
                   <div
                     style={{
                       transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-                      transition: 'transform 0.25s ease',
-                      color: isOpen ? '#38bdf8' : 'var(--text-muted)',
+                      transition: 'transform 0.2s ease',
+                      color: isOpen ? 'var(--burgundy-accent)' : 'var(--text-muted)',
                       flexShrink: 0,
                     }}
                   >
@@ -89,9 +89,9 @@ export default function FaqSection() {
                 {isOpen && (
                   <div
                     style={{
-                      marginTop: '0.9rem',
-                      paddingTop: '0.9rem',
-                      borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                      marginTop: '0.85rem',
+                      paddingTop: '0.85rem',
+                      borderTop: '1px solid var(--border-subtle)',
                       fontSize: '0.92rem',
                       color: 'var(--text-secondary)',
                       lineHeight: 1.65,

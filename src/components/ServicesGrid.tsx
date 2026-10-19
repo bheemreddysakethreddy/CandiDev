@@ -16,12 +16,12 @@ import { SERVICE_PILLARS } from '@/data/mockData';
 
 interface ServicesGridProps {
   onOpenBooking: () => void;
-  onNavigateToSimulator: () => void;
+  onNavigateToDashboard: () => void;
 }
 
 export default function ServicesGrid({
   onOpenBooking,
-  onNavigateToSimulator,
+  onNavigateToDashboard,
 }: ServicesGridProps) {
   const [activeCategory, setActiveCategory] = useState<string>('all');
 
@@ -35,19 +35,19 @@ export default function ServicesGrid({
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Terminal':
-        return <Terminal size={24} color="#38bdf8" />;
+        return <Terminal size={24} color="var(--burgundy-accent)" />;
       case 'Layers':
-        return <Layers size={24} color="#818cf8" />;
+        return <Layers size={24} color="var(--burgundy-accent)" />;
       case 'Users':
-        return <Users size={24} color="#f472b6" />;
+        return <Users size={24} color="var(--burgundy-accent)" />;
       case 'FileCheck':
-        return <FileCheck size={24} color="#34d399" />;
+        return <FileCheck size={24} color="#059669" />;
       case 'ShieldCheck':
-        return <ShieldCheck size={24} color="#fbbf24" />;
+        return <ShieldCheck size={24} color="#b45309" />;
       case 'BarChart3':
-        return <BarChart3 size={24} color="#a78bfa" />;
+        return <BarChart3 size={24} color="var(--burgundy-dark)" />;
       default:
-        return <Terminal size={24} color="#38bdf8" />;
+        return <Terminal size={24} color="var(--burgundy-accent)" />;
     }
   };
 
@@ -66,11 +66,11 @@ export default function ServicesGrid({
   });
 
   return (
-    <section id="services" className="section" style={{ position: 'relative' }}>
+    <section id="services" className="section" style={{ backgroundColor: '#ffffff' }}>
       <div className="container">
         <div className="section-header">
           <div className="section-tag">
-            <Sparkles size={14} />
+            <Sparkles size={14} color="var(--burgundy-accent)" />
             <span>Enterprise Service Suite</span>
           </div>
           <h2 className="section-title">
@@ -88,7 +88,7 @@ export default function ServicesGrid({
               flexWrap: 'wrap',
               justifyContent: 'center',
               gap: '0.65rem',
-              marginTop: '2rem',
+              marginTop: '1.8rem',
             }}
           >
             {categories.map((cat) => (
@@ -101,20 +101,21 @@ export default function ServicesGrid({
                   border: '1px solid',
                   borderColor:
                     activeCategory === cat.id
-                      ? 'var(--cyan-glow)'
-                      : 'var(--border-subtle)',
+                      ? 'var(--burgundy-accent)'
+                      : 'var(--border-medium)',
                   background:
                     activeCategory === cat.id
-                      ? 'rgba(56, 189, 248, 0.15)'
-                      : 'rgba(15, 23, 42, 0.5)',
+                      ? 'var(--burgundy-accent)'
+                      : '#ffffff',
                   color:
                     activeCategory === cat.id
-                      ? 'var(--text-primary)'
+                      ? '#ffffff'
                       : 'var(--text-secondary)',
                   fontWeight: 600,
                   fontSize: '0.85rem',
                   cursor: 'pointer',
-                  transition: 'all 0.2s',
+                  transition: 'all 0.15s ease',
+                  boxShadow: 'var(--shadow-sm)',
                 }}
               >
                 {cat.label}
@@ -127,7 +128,7 @@ export default function ServicesGrid({
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
             gap: '1.8rem',
           }}
         >
@@ -137,6 +138,7 @@ export default function ServicesGrid({
               className="glass-card"
               style={{
                 padding: '2.2rem',
+                background: '#ffffff',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
@@ -153,11 +155,11 @@ export default function ServicesGrid({
                 >
                   <div
                     style={{
-                      width: '52px',
-                      height: '52px',
+                      width: '50px',
+                      height: '50px',
                       borderRadius: '12px',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      border: '1px solid var(--border-subtle)',
+                      background: 'var(--burgundy-soft)',
+                      border: '1px solid var(--burgundy-border)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -171,9 +173,9 @@ export default function ServicesGrid({
                       fontWeight: 700,
                       padding: '0.25rem 0.75rem',
                       borderRadius: 'var(--radius-full)',
-                      background: 'rgba(56, 189, 248, 0.1)',
-                      color: '#38bdf8',
-                      border: '1px solid rgba(56, 189, 248, 0.2)',
+                      background: 'var(--burgundy-soft)',
+                      color: 'var(--burgundy-accent)',
+                      border: '1px solid var(--burgundy-border)',
                     }}
                   >
                     {pillar.badge}
@@ -182,11 +184,11 @@ export default function ServicesGrid({
 
                 <div
                   style={{
-                    fontSize: '0.8rem',
-                    color: 'var(--text-muted)',
+                    fontSize: '0.78rem',
+                    color: 'var(--burgundy-accent)',
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em',
-                    fontWeight: 600,
+                    fontWeight: 700,
                     marginBottom: '0.3rem',
                   }}
                 >
@@ -195,10 +197,10 @@ export default function ServicesGrid({
 
                 <h3
                   style={{
-                    fontSize: '1.35rem',
+                    fontSize: '1.3rem',
                     fontWeight: 700,
-                    marginBottom: '0.9rem',
-                    color: 'var(--text-primary)',
+                    marginBottom: '0.8rem',
+                    color: 'var(--text-heading)',
                   }}
                 >
                   {pillar.title}
@@ -208,7 +210,7 @@ export default function ServicesGrid({
                   style={{
                     fontSize: '0.92rem',
                     color: 'var(--text-secondary)',
-                    lineHeight: 1.65,
+                    lineHeight: 1.6,
                     marginBottom: '1.4rem',
                   }}
                 >
@@ -238,7 +240,7 @@ export default function ServicesGrid({
                     >
                       <CheckCircle2
                         size={16}
-                        color="#34d399"
+                        color="#059669"
                         style={{ flexShrink: 0, marginTop: '2px' }}
                       />
                       <span>{bullet}</span>
@@ -253,17 +255,17 @@ export default function ServicesGrid({
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   paddingTop: '1.2rem',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                  borderTop: '1px solid var(--border-subtle)',
                 }}
               >
                 <button
-                  onClick={onNavigateToSimulator}
+                  onClick={onNavigateToDashboard}
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#38bdf8',
+                    color: 'var(--burgundy-accent)',
                     fontSize: '0.85rem',
-                    fontWeight: 600,
+                    fontWeight: 700,
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
@@ -271,7 +273,7 @@ export default function ServicesGrid({
                     padding: 0,
                   }}
                 >
-                  <span>Test in Sandbox</span>
+                  <span>View in Portal</span>
                   <ArrowRight size={14} />
                 </button>
                 <button

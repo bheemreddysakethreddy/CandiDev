@@ -3,16 +3,13 @@
 import React, { useState } from 'react';
 import {
   X,
-  Calendar,
   Building,
   Mail,
   User,
   Phone,
   CheckCircle2,
-  Sparkles,
   ArrowRight,
   ChevronRight,
-  ShieldCheck,
 } from 'lucide-react';
 
 interface PilotBookingModalProps {
@@ -73,9 +70,9 @@ export default function PilotBookingModal({
         style={{
           width: '100%',
           maxWidth: '680px',
-          background: 'rgba(11, 16, 29, 0.98)',
+          background: '#ffffff',
           border: '1px solid var(--border-medium)',
-          boxShadow: '0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(56, 189, 248, 0.3)',
+          boxShadow: 'var(--shadow-lg)',
           borderRadius: 'var(--radius-xl)',
           padding: '2.4rem',
           position: 'relative',
@@ -88,7 +85,7 @@ export default function PilotBookingModal({
             position: 'absolute',
             top: '1.2rem',
             right: '1.2rem',
-            background: 'rgba(255, 255, 255, 0.06)',
+            background: '#f3f4f6',
             border: '1px solid var(--border-subtle)',
             borderRadius: '50%',
             width: '36px',
@@ -119,7 +116,7 @@ export default function PilotBookingModal({
               gap: '0.4rem',
               fontSize: '0.82rem',
               fontWeight: 700,
-              color: step >= 1 ? '#38bdf8' : 'var(--text-muted)',
+              color: step >= 1 ? 'var(--burgundy-accent)' : 'var(--text-muted)',
             }}
           >
             <span
@@ -127,8 +124,8 @@ export default function PilotBookingModal({
                 width: '24px',
                 height: '24px',
                 borderRadius: '50%',
-                background: step >= 1 ? 'rgba(56, 189, 248, 0.2)' : 'rgba(255,255,255,0.05)',
-                border: step >= 1 ? '1px solid #38bdf8' : '1px solid transparent',
+                background: step >= 1 ? 'var(--burgundy-soft)' : '#f3f4f6',
+                border: step >= 1 ? '1px solid var(--burgundy-accent)' : '1px solid #d1d5db',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -148,7 +145,7 @@ export default function PilotBookingModal({
               gap: '0.4rem',
               fontSize: '0.82rem',
               fontWeight: 700,
-              color: step >= 2 ? '#38bdf8' : 'var(--text-muted)',
+              color: step >= 2 ? 'var(--burgundy-accent)' : 'var(--text-muted)',
             }}
           >
             <span
@@ -156,8 +153,8 @@ export default function PilotBookingModal({
                 width: '24px',
                 height: '24px',
                 borderRadius: '50%',
-                background: step >= 2 ? 'rgba(56, 189, 248, 0.2)' : 'rgba(255,255,255,0.05)',
-                border: step >= 2 ? '1px solid #38bdf8' : '1px solid transparent',
+                background: step >= 2 ? 'var(--burgundy-soft)' : '#f3f4f6',
+                border: step >= 2 ? '1px solid var(--burgundy-accent)' : '1px solid #d1d5db',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -177,7 +174,7 @@ export default function PilotBookingModal({
               gap: '0.4rem',
               fontSize: '0.82rem',
               fontWeight: 700,
-              color: step === 3 ? '#34d399' : 'var(--text-muted)',
+              color: step === 3 ? '#059669' : 'var(--text-muted)',
             }}
           >
             <span
@@ -185,8 +182,8 @@ export default function PilotBookingModal({
                 width: '24px',
                 height: '24px',
                 borderRadius: '50%',
-                background: step === 3 ? 'rgba(16, 185, 129, 0.2)' : 'rgba(255,255,255,0.05)',
-                border: step === 3 ? '1px solid #34d399' : '1px solid transparent',
+                background: step === 3 ? 'var(--emerald-soft)' : '#f3f4f6',
+                border: step === 3 ? '1px solid #059669' : '1px solid #d1d5db',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -206,7 +203,7 @@ export default function PilotBookingModal({
                 style={{
                   fontSize: '1.45rem',
                   fontWeight: 800,
-                  color: '#ffffff',
+                  color: 'var(--text-heading)',
                   marginBottom: '0.35rem',
                 }}
               >
@@ -224,8 +221,8 @@ export default function PilotBookingModal({
                   style={{
                     display: 'block',
                     fontSize: '0.82rem',
-                    fontWeight: 600,
-                    color: 'var(--text-secondary)',
+                    fontWeight: 700,
+                    color: 'var(--text-heading)',
                     marginBottom: '0.35rem',
                   }}
                 >
@@ -245,8 +242,8 @@ export default function PilotBookingModal({
                     onChange={(e) => setInstituteName(e.target.value)}
                     style={{
                       width: '100%',
-                      background: 'var(--bg-input)',
-                      border: '1px solid var(--border-subtle)',
+                      background: '#ffffff',
+                      border: '1px solid var(--border-medium)',
                       borderRadius: 'var(--radius-md)',
                       padding: '0.65rem 1rem 0.65rem 2.5rem',
                       color: 'var(--text-primary)',
@@ -263,8 +260,8 @@ export default function PilotBookingModal({
                     style={{
                       display: 'block',
                       fontSize: '0.82rem',
-                      fontWeight: 600,
-                      color: 'var(--text-secondary)',
+                      fontWeight: 700,
+                      color: 'var(--text-heading)',
                       marginBottom: '0.35rem',
                     }}
                   >
@@ -284,8 +281,8 @@ export default function PilotBookingModal({
                       onChange={(e) => setContactName(e.target.value)}
                       style={{
                         width: '100%',
-                        background: 'var(--bg-input)',
-                        border: '1px solid var(--border-subtle)',
+                        background: '#ffffff',
+                        border: '1px solid var(--border-medium)',
                         borderRadius: 'var(--radius-md)',
                         padding: '0.65rem 1rem 0.65rem 2.5rem',
                         color: 'var(--text-primary)',
@@ -301,8 +298,8 @@ export default function PilotBookingModal({
                     style={{
                       display: 'block',
                       fontSize: '0.82rem',
-                      fontWeight: 600,
-                      color: 'var(--text-secondary)',
+                      fontWeight: 700,
+                      color: 'var(--text-heading)',
                       marginBottom: '0.35rem',
                     }}
                   >
@@ -322,8 +319,8 @@ export default function PilotBookingModal({
                       onChange={(e) => setEmail(e.target.value)}
                       style={{
                         width: '100%',
-                        background: 'var(--bg-input)',
-                        border: '1px solid var(--border-subtle)',
+                        background: '#ffffff',
+                        border: '1px solid var(--border-medium)',
                         borderRadius: 'var(--radius-md)',
                         padding: '0.65rem 1rem 0.65rem 2.5rem',
                         color: 'var(--text-primary)',
@@ -341,8 +338,8 @@ export default function PilotBookingModal({
                     style={{
                       display: 'block',
                       fontSize: '0.82rem',
-                      fontWeight: 600,
-                      color: 'var(--text-secondary)',
+                      fontWeight: 700,
+                      color: 'var(--text-heading)',
                       marginBottom: '0.35rem',
                     }}
                   >
@@ -362,8 +359,8 @@ export default function PilotBookingModal({
                       onChange={(e) => setPhone(e.target.value)}
                       style={{
                         width: '100%',
-                        background: 'var(--bg-input)',
-                        border: '1px solid var(--border-subtle)',
+                        background: '#ffffff',
+                        border: '1px solid var(--border-medium)',
                         borderRadius: 'var(--radius-md)',
                         padding: '0.65rem 1rem 0.65rem 2.5rem',
                         color: 'var(--text-primary)',
@@ -379,8 +376,8 @@ export default function PilotBookingModal({
                     style={{
                       display: 'block',
                       fontSize: '0.82rem',
-                      fontWeight: 600,
-                      color: 'var(--text-secondary)',
+                      fontWeight: 700,
+                      color: 'var(--text-heading)',
                       marginBottom: '0.35rem',
                     }}
                   >
@@ -391,8 +388,8 @@ export default function PilotBookingModal({
                     onChange={(e) => setStudentCount(e.target.value)}
                     style={{
                       width: '100%',
-                      background: 'var(--bg-input)',
-                      border: '1px solid var(--border-subtle)',
+                      background: '#ffffff',
+                      border: '1px solid var(--border-medium)',
                       borderRadius: 'var(--radius-md)',
                       padding: '0.65rem 1rem',
                       color: 'var(--text-primary)',
@@ -438,7 +435,7 @@ export default function PilotBookingModal({
                 style={{
                   fontSize: '1.45rem',
                   fontWeight: 800,
-                  color: '#ffffff',
+                  color: 'var(--text-heading)',
                   marginBottom: '0.35rem',
                 }}
               >
@@ -457,7 +454,7 @@ export default function PilotBookingModal({
                     display: 'block',
                     fontSize: '0.85rem',
                     fontWeight: 700,
-                    color: 'var(--text-primary)',
+                    color: 'var(--text-heading)',
                     marginBottom: '0.6rem',
                   }}
                 >
@@ -486,14 +483,14 @@ export default function PilotBookingModal({
                         borderRadius: 'var(--radius-sm)',
                         border: '1px solid',
                         borderColor: selectedTracks.includes(track)
-                          ? '#38bdf8'
-                          : 'var(--border-subtle)',
+                          ? 'var(--burgundy-accent)'
+                          : 'var(--border-medium)',
                         background: selectedTracks.includes(track)
-                          ? 'rgba(56, 189, 248, 0.12)'
-                          : 'rgba(255, 255, 255, 0.02)',
+                          ? 'var(--burgundy-soft)'
+                          : '#ffffff',
                         color: selectedTracks.includes(track)
-                          ? '#ffffff'
-                          : 'var(--text-secondary)',
+                          ? 'var(--burgundy-accent)'
+                          : 'var(--text-primary)',
                         fontSize: '0.82rem',
                         fontWeight: 600,
                         cursor: 'pointer',
@@ -509,18 +506,18 @@ export default function PilotBookingModal({
                           borderRadius: '4px',
                           border: '1px solid',
                           borderColor: selectedTracks.includes(track)
-                            ? '#38bdf8'
-                            : 'var(--text-muted)',
+                            ? 'var(--burgundy-accent)'
+                            : '#9ca3af',
                           background: selectedTracks.includes(track)
-                            ? '#38bdf8'
-                            : 'transparent',
+                            ? 'var(--burgundy-accent)'
+                            : '#ffffff',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
                         }}
                       >
                         {selectedTracks.includes(track) && (
-                          <CheckCircle2 size={12} color="#070913" />
+                          <CheckCircle2 size={12} color="#ffffff" />
                         )}
                       </div>
                       <span>{track}</span>
@@ -535,8 +532,8 @@ export default function PilotBookingModal({
                   style={{
                     display: 'block',
                     fontSize: '0.82rem',
-                    fontWeight: 600,
-                    color: 'var(--text-secondary)',
+                    fontWeight: 700,
+                    color: 'var(--text-heading)',
                     marginBottom: '0.35rem',
                   }}
                 >
@@ -547,8 +544,8 @@ export default function PilotBookingModal({
                   onChange={(e) => setTargetDate(e.target.value)}
                   style={{
                     width: '100%',
-                    background: 'var(--bg-input)',
-                    border: '1px solid var(--border-subtle)',
+                    background: '#ffffff',
+                    border: '1px solid var(--border-medium)',
                     borderRadius: 'var(--radius-md)',
                     padding: '0.65rem 1rem',
                     color: 'var(--text-primary)',
@@ -571,8 +568,8 @@ export default function PilotBookingModal({
                   style={{
                     display: 'block',
                     fontSize: '0.82rem',
-                    fontWeight: 600,
-                    color: 'var(--text-secondary)',
+                    fontWeight: 700,
+                    color: 'var(--text-heading)',
                     marginBottom: '0.35rem',
                   }}
                 >
@@ -585,8 +582,8 @@ export default function PilotBookingModal({
                   onChange={(e) => setSpecialNotes(e.target.value)}
                   style={{
                     width: '100%',
-                    background: 'var(--bg-input)',
-                    border: '1px solid var(--border-subtle)',
+                    background: '#ffffff',
+                    border: '1px solid var(--border-medium)',
                     borderRadius: 'var(--radius-md)',
                     padding: '0.65rem 1rem',
                     color: 'var(--text-primary)',
@@ -633,26 +630,25 @@ export default function PilotBookingModal({
           <div style={{ textAlign: 'center', padding: '1.5rem 0' }}>
             <div
               style={{
-                width: '72px',
-                height: '72px',
+                width: '68px',
+                height: '68px',
                 borderRadius: '50%',
-                background: 'rgba(16, 185, 129, 0.15)',
-                border: '2px solid #10b981',
+                background: 'var(--emerald-soft)',
+                border: '2px solid #059669',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 margin: '0 auto 1.5rem',
-                boxShadow: '0 0 25px rgba(16, 185, 129, 0.4)',
               }}
             >
-              <CheckCircle2 size={40} color="#34d399" />
+              <CheckCircle2 size={36} color="#059669" />
             </div>
 
             <h3
               style={{
                 fontSize: '1.8rem',
                 fontWeight: 800,
-                color: '#ffffff',
+                color: 'var(--text-heading)',
                 marginBottom: '0.6rem',
               }}
             >
@@ -668,18 +664,18 @@ export default function PilotBookingModal({
                 margin: '0 auto 1.8rem',
               }}
             >
-              Thank you, <strong style={{ color: '#fff' }}>{contactName || 'Placement Team'}</strong>.
+              Thank you, <strong style={{ color: 'var(--text-heading)' }}>{contactName || 'Placement Team'}</strong>.
               We have reserved a dedicated pilot slot for{' '}
-              <strong style={{ color: '#38bdf8' }}>{instituteName || 'your institute'}</strong>{' '}
+              <strong style={{ color: 'var(--burgundy-accent)' }}>{instituteName || 'your institute'}</strong>{' '}
               ({studentCount} students).
             </p>
 
             {/* Pilot Summary Card */}
             <div
               style={{
-                background: 'rgba(15, 23, 42, 0.8)',
+                background: 'var(--burgundy-soft)',
                 borderRadius: 'var(--radius-md)',
-                border: '1px solid var(--border-accent)',
+                border: '1px solid var(--burgundy-border)',
                 padding: '1.2rem',
                 maxWidth: '480px',
                 margin: '0 auto 2rem',
@@ -694,8 +690,8 @@ export default function PilotBookingModal({
                   marginBottom: '0.5rem',
                 }}
               >
-                <span style={{ color: 'var(--text-muted)' }}>Assigned Partner Director:</span>
-                <span style={{ color: '#ffffff', fontWeight: 600 }}>Vikram Joshi (Senior Staff)</span>
+                <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Assigned Partner Director:</span>
+                <span style={{ color: 'var(--text-heading)', fontWeight: 700 }}>Vikram Joshi (Senior Staff)</span>
               </div>
               <div
                 style={{
@@ -705,8 +701,8 @@ export default function PilotBookingModal({
                   marginBottom: '0.5rem',
                 }}
               >
-                <span style={{ color: 'var(--text-muted)' }}>Target Window:</span>
-                <span style={{ color: '#38bdf8', fontWeight: 600 }}>{targetDate}</span>
+                <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Target Window:</span>
+                <span style={{ color: 'var(--burgundy-accent)', fontWeight: 700 }}>{targetDate}</span>
               </div>
               <div
                 style={{
@@ -715,10 +711,10 @@ export default function PilotBookingModal({
                   fontSize: '0.85rem',
                 }}
               >
-                <span style={{ color: 'var(--text-muted)' }}>Verification Code:</span>
+                <span style={{ color: 'var(--text-secondary)', fontWeight: 600 }}>Verification Code:</span>
                 <span
                   style={{
-                    color: '#34d399',
+                    color: '#059669',
                     fontFamily: 'var(--font-code)',
                     fontWeight: 700,
                   }}

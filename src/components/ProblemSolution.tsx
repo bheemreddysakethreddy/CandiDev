@@ -5,10 +5,7 @@ import {
   AlertTriangle,
   CheckCircle,
   XCircle,
-  TrendingDown,
-  TrendingUp,
   ArrowRight,
-  ShieldAlert,
   Zap,
 } from 'lucide-react';
 
@@ -62,11 +59,11 @@ export default function ProblemSolution() {
   ];
 
   return (
-    <section id="why-us" className="section">
+    <section id="why-us" className="section" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container">
         <div className="section-header">
           <div className="section-tag">
-            <Zap size={14} />
+            <Zap size={14} color="var(--burgundy-accent)" />
             <span>The Placement Gap Solved</span>
           </div>
           <h2 className="section-title">
@@ -89,10 +86,11 @@ export default function ProblemSolution() {
           <div
             style={{
               display: 'inline-flex',
-              background: 'rgba(15, 23, 42, 0.8)',
-              padding: '6px',
+              background: '#ffffff',
+              padding: '5px',
               borderRadius: 'var(--radius-full)',
-              border: '1px solid var(--border-subtle)',
+              border: '1px solid var(--border-medium)',
+              boxShadow: 'var(--shadow-sm)',
             }}
           >
             <button
@@ -106,14 +104,14 @@ export default function ProblemSolution() {
                 border: 'none',
                 background:
                   activeTab === 'problem'
-                    ? 'rgba(244, 63, 94, 0.2)'
+                    ? 'var(--rose-soft)'
                     : 'transparent',
                 color:
-                  activeTab === 'problem' ? '#fb7185' : 'var(--text-secondary)',
-                fontWeight: 600,
+                  activeTab === 'problem' ? '#9f1239' : 'var(--text-secondary)',
+                fontWeight: 700,
                 fontSize: '0.9rem',
                 cursor: 'pointer',
-                transition: 'all 0.2s',
+                transition: 'all 0.15s ease',
               }}
             >
               <AlertTriangle size={16} />
@@ -131,14 +129,14 @@ export default function ProblemSolution() {
                 border: 'none',
                 background:
                   activeTab === 'solution'
-                    ? 'linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(99, 102, 241, 0.3) 100%)'
+                    ? 'var(--burgundy-accent)'
                     : 'transparent',
                 color:
-                  activeTab === 'solution' ? '#38bdf8' : 'var(--text-secondary)',
-                fontWeight: 600,
+                  activeTab === 'solution' ? '#ffffff' : 'var(--text-secondary)',
+                fontWeight: 700,
                 fontSize: '0.9rem',
                 cursor: 'pointer',
-                transition: 'all 0.2s',
+                transition: 'all 0.15s ease',
               }}
             >
               <CheckCircle size={16} />
@@ -161,10 +159,11 @@ export default function ProblemSolution() {
               className="glass-card"
               style={{
                 padding: '1.8rem',
+                background: '#ffffff',
                 borderLeft:
                   activeTab === 'problem'
-                    ? '3px solid #f43f5e'
-                    : '3px solid #06b6d4',
+                    ? '4px solid #e11d48'
+                    : '4px solid var(--burgundy-accent)',
               }}
             >
               <div
@@ -181,31 +180,34 @@ export default function ProblemSolution() {
                     fontWeight: 700,
                     textTransform: 'uppercase',
                     letterSpacing: '0.05em',
-                    color: activeTab === 'problem' ? '#fb7185' : '#38bdf8',
+                    color: activeTab === 'problem' ? '#9f1239' : 'var(--burgundy-accent)',
                     background:
                       activeTab === 'problem'
-                        ? 'rgba(244, 63, 94, 0.12)'
-                        : 'rgba(56, 189, 248, 0.12)',
-                    padding: '0.2rem 0.6rem',
+                        ? 'var(--rose-soft)'
+                        : 'var(--burgundy-soft)',
+                    padding: '0.25rem 0.65rem',
                     borderRadius: 'var(--radius-full)',
+                    border: '1px solid',
+                    borderColor:
+                      activeTab === 'problem' ? 'var(--rose-border)' : 'var(--burgundy-border)',
                   }}
                 >
                   {item.badge}
                 </span>
 
                 {activeTab === 'problem' ? (
-                  <XCircle size={20} color="#f43f5e" />
+                  <XCircle size={20} color="#e11d48" />
                 ) : (
-                  <CheckCircle size={20} color="#10b981" />
+                  <CheckCircle size={20} color="#059669" />
                 )}
               </div>
 
               <h3
                 style={{
-                  fontSize: '1.2rem',
+                  fontSize: '1.18rem',
                   fontWeight: 700,
                   marginBottom: '0.65rem',
-                  color: 'var(--text-primary)',
+                  color: 'var(--text-heading)',
                 }}
               >
                 {item.title}
@@ -229,9 +231,9 @@ export default function ProblemSolution() {
           style={{
             marginTop: '3.5rem',
             padding: '1.8rem 2.2rem',
-            background: 'var(--gradient-brand-subtle)',
+            background: 'var(--burgundy-soft)',
             borderRadius: 'var(--radius-lg)',
-            border: '1px solid var(--border-accent)',
+            border: '1px solid var(--burgundy-border)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -244,7 +246,7 @@ export default function ProblemSolution() {
               style={{
                 fontSize: '1.15rem',
                 fontWeight: 700,
-                color: '#ffffff',
+                color: 'var(--text-heading)',
                 marginBottom: '0.3rem',
               }}
             >

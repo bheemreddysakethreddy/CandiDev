@@ -6,22 +6,11 @@ import {
   Pause,
   RotateCcw,
   CheckCircle,
-  AlertCircle,
-  Video,
-  Mic,
-  MicOff,
   Clock,
-  Terminal,
-  FileCode,
-  CheckCheck,
   Send,
-  Sparkles,
   Award,
-  ChevronDown,
-  User,
-  ExternalLink,
 } from 'lucide-react';
-import { SIMULATOR_QUESTIONS, SimulatorQuestion, Student } from '@/data/mockData';
+import { SIMULATOR_QUESTIONS, Student } from '@/data/mockData';
 
 interface MockSimulatorProps {
   onOpenScorecard: (student: Student) => void;
@@ -33,7 +22,6 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
   const [code, setCode] = useState('');
   const [isRunningTests, setIsRunningTests] = useState(false);
   const [testOutput, setTestOutput] = useState<string | null>(null);
-  const [testStatus, setTestStatus] = useState<'idle' | 'success' | 'failed'>('idle');
 
   // Timer state
   const [secondsLeft, setSecondsLeft] = useState(45 * 60);
@@ -96,11 +84,9 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
   const handleRunTests = () => {
     setIsRunningTests(true);
     setTestOutput(null);
-    setTestStatus('idle');
 
     setTimeout(() => {
       setIsRunningTests(false);
-      setTestStatus('success');
       setTestOutput(
         `✓ Test Case 1: nums=[1,3,-1,-3,5,3,6,7], k=3 -> Expected: [3,3,5,5,6,7], Got: [3,3,5,5,6,7] (2.1ms)\n✓ Test Case 2: nums=[1], k=1 -> Expected: [1], Got: [1] (0.8ms)\n✓ Test Case 3: nums=[9,11], k=2 -> Expected: [11], Got: [11] (0.9ms)\n\nCorporate Evaluation: All 3 Test Cases Passed. Memory: 42.1 MB. Time Complexity O(N) verified.`
       );
@@ -169,7 +155,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
   };
 
   return (
-    <section id="simulator" className="section" style={{ position: 'relative' }}>
+    <section id="simulator" className="section" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container">
         <div className="section-header">
           <div className="section-tag">
@@ -184,21 +170,21 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
           </p>
         </div>
 
-        {/* Simulator Frame */}
+        {/* Simulator Frame - Clean White Light Mode */}
         <div
           style={{
-            background: 'var(--bg-secondary)',
+            background: '#ffffff',
             borderRadius: 'var(--radius-xl)',
             border: '1px solid var(--border-medium)',
-            boxShadow: 'var(--shadow-lg), var(--shadow-glow-cyan)',
+            boxShadow: 'var(--shadow-md)',
             overflow: 'hidden',
           }}
         >
           {/* Top Control Bar */}
           <div
             style={{
-              padding: '1rem 1.5rem',
-              background: 'rgba(15, 23, 42, 0.95)',
+              padding: '0.9rem 1.5rem',
+              background: '#fdfafb',
               borderBottom: '1px solid var(--border-subtle)',
               display: 'flex',
               alignItems: 'center',
@@ -215,7 +201,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                   style={{
                     fontSize: '0.85rem',
                     fontWeight: 700,
-                    color: '#ffffff',
+                    color: 'var(--text-heading)',
                     letterSpacing: '0.04em',
                   }}
                 >
@@ -225,15 +211,15 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
 
               {/* Question Dropdown */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                <span style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', fontWeight: 600 }}>
                   Problem:
                 </span>
                 <select
                   value={selectedQuestionIndex}
                   onChange={(e) => setSelectedQuestionIndex(Number(e.target.value))}
                   style={{
-                    background: 'rgba(30, 41, 59, 0.7)',
-                    border: '1px solid var(--border-subtle)',
+                    background: '#ffffff',
+                    border: '1px solid var(--border-medium)',
                     borderRadius: 'var(--radius-sm)',
                     color: 'var(--text-primary)',
                     padding: '0.35rem 0.75rem',
@@ -263,21 +249,21 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                     style={{
                       background:
                         selectedLanguage === lang
-                          ? 'rgba(56, 189, 248, 0.2)'
-                          : 'transparent',
+                          ? 'var(--burgundy-accent)'
+                          : '#ffffff',
                       border: '1px solid',
                       borderColor:
                         selectedLanguage === lang
-                          ? 'var(--cyan-glow)'
-                          : 'rgba(255, 255, 255, 0.08)',
+                          ? 'var(--burgundy-accent)'
+                          : 'var(--border-medium)',
                       color:
                         selectedLanguage === lang
-                          ? '#38bdf8'
+                          ? '#ffffff'
                           : 'var(--text-secondary)',
                       padding: '0.25rem 0.65rem',
                       borderRadius: 'var(--radius-sm)',
                       fontSize: '0.75rem',
-                      fontWeight: 600,
+                      fontWeight: 700,
                       textTransform: 'uppercase',
                       cursor: 'pointer',
                     }}
@@ -293,13 +279,14 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  background: 'rgba(0, 0, 0, 0.4)',
+                  background: '#ffffff',
                   padding: '0.3rem 0.75rem',
                   borderRadius: 'var(--radius-sm)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  border: '1px solid var(--border-medium)',
                   fontFamily: 'var(--font-code)',
                   fontSize: '0.88rem',
-                  color: secondsLeft < 300 ? '#f43f5e' : '#38bdf8',
+                  fontWeight: 700,
+                  color: secondsLeft < 300 ? '#e11d48' : 'var(--burgundy-accent)',
                 }}
               >
                 <Clock size={14} />
@@ -310,7 +297,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: 'var(--text-muted)',
+                    color: 'var(--text-secondary)',
                     cursor: 'pointer',
                     display: 'flex',
                   }}
@@ -323,7 +310,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: 'var(--text-muted)',
+                    color: 'var(--text-secondary)',
                     cursor: 'pointer',
                     display: 'flex',
                   }}
@@ -359,7 +346,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
             {/* Left Column: Video Feeds, Live Audio Waveform & Evaluation Panel */}
             <div
               style={{
-                background: 'rgba(11, 16, 29, 0.85)',
+                background: '#faf8f9',
                 borderRight: '1px solid var(--border-subtle)',
                 display: 'flex',
                 flexDirection: 'column',
@@ -382,8 +369,8 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                     aspectRatio: '4/3',
                     borderRadius: 'var(--radius-md)',
                     overflow: 'hidden',
-                    border: '1px solid var(--border-subtle)',
-                    backgroundColor: '#0a0f1d',
+                    border: '1px solid var(--border-medium)',
+                    backgroundColor: '#ffffff',
                   }}
                 >
                   <img
@@ -402,7 +389,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       left: 0,
                       right: 0,
                       padding: '0.4rem 0.5rem',
-                      background: 'linear-gradient(transparent, rgba(0,0,0,0.85))',
+                      background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
@@ -418,9 +405,9 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       Aisha (Candidate)
                     </span>
                     <div style={{ display: 'flex', gap: '2px', alignItems: 'center' }}>
-                      <span className="waveform-bar" style={{ height: 10 }} />
-                      <span className="waveform-bar" style={{ height: 16 }} />
-                      <span className="waveform-bar" style={{ height: 8 }} />
+                      <span className="waveform-bar" style={{ height: 10, background: '#ffffff' }} />
+                      <span className="waveform-bar" style={{ height: 16, background: '#ffffff' }} />
+                      <span className="waveform-bar" style={{ height: 8, background: '#ffffff' }} />
                     </div>
                   </div>
                 </div>
@@ -432,8 +419,8 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                     aspectRatio: '4/3',
                     borderRadius: 'var(--radius-md)',
                     overflow: 'hidden',
-                    border: '1px solid var(--border-subtle)',
-                    backgroundColor: '#0a0f1d',
+                    border: '1px solid var(--border-medium)',
+                    backgroundColor: '#ffffff',
                   }}
                 >
                   <img
@@ -452,7 +439,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       left: 0,
                       right: 0,
                       padding: '0.4rem 0.5rem',
-                      background: 'linear-gradient(transparent, rgba(0,0,0,0.85))',
+                      background: 'linear-gradient(transparent, rgba(0,0,0,0.8))',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
@@ -471,7 +458,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       style={{
                         fontSize: '0.65rem',
                         color: '#34d399',
-                        fontWeight: 600,
+                        fontWeight: 700,
                       }}
                     >
                       CloudScale
@@ -501,15 +488,16 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       fontWeight: 700,
                       textTransform: 'uppercase',
                       letterSpacing: '0.05em',
-                      color: 'var(--text-secondary)',
+                      color: 'var(--burgundy-accent)',
                     }}
                   >
                     Live Corporate Rubric
                   </h4>
                   <div
                     style={{
-                      background: 'rgba(56, 189, 248, 0.15)',
-                      color: '#38bdf8',
+                      background: 'var(--burgundy-soft)',
+                      color: 'var(--burgundy-accent)',
+                      border: '1px solid var(--burgundy-border)',
                       padding: '0.2rem 0.6rem',
                       borderRadius: 'var(--radius-full)',
                       fontWeight: 700,
@@ -532,13 +520,13 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                         marginBottom: '0.25rem',
                       }}
                     >
-                      <span style={{ color: 'var(--text-primary)' }}>
+                      <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
                         Monotonic Deque Optimization (O(N))
                       </span>
                       <span
                         style={{
                           fontWeight: 700,
-                          color: '#38bdf8',
+                          color: 'var(--burgundy-accent)',
                           fontFamily: 'var(--font-code)',
                         }}
                       >
@@ -553,7 +541,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       onChange={(e) =>
                         setRubricScores({ ...rubricScores, algo: Number(e.target.value) })
                       }
-                      style={{ width: '100%', accentColor: '#38bdf8' }}
+                      style={{ width: '100%', accentColor: '#881337' }}
                     />
                   </div>
 
@@ -567,13 +555,13 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                         marginBottom: '0.25rem',
                       }}
                     >
-                      <span style={{ color: 'var(--text-primary)' }}>
+                      <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
                         Boundary & Edge-Case Vigilance
                       </span>
                       <span
                         style={{
                           fontWeight: 700,
-                          color: '#34d399',
+                          color: '#059669',
                           fontFamily: 'var(--font-code)',
                         }}
                       >
@@ -591,7 +579,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                           edgeCases: Number(e.target.value),
                         })
                       }
-                      style={{ width: '100%', accentColor: '#34d399' }}
+                      style={{ width: '100%', accentColor: '#059669' }}
                     />
                   </div>
 
@@ -605,13 +593,13 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                         marginBottom: '0.25rem',
                       }}
                     >
-                      <span style={{ color: 'var(--text-primary)' }}>
+                      <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
                         Production Code Hygiene & Naming
                       </span>
                       <span
                         style={{
                           fontWeight: 700,
-                          color: '#a78bfa',
+                          color: 'var(--burgundy-dark)',
                           fontFamily: 'var(--font-code)',
                         }}
                       >
@@ -629,7 +617,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                           codeHygiene: Number(e.target.value),
                         })
                       }
-                      style={{ width: '100%', accentColor: '#a78bfa' }}
+                      style={{ width: '100%', accentColor: '#4c0519' }}
                     />
                   </div>
 
@@ -643,13 +631,13 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                         marginBottom: '0.25rem',
                       }}
                     >
-                      <span style={{ color: 'var(--text-primary)' }}>
+                      <span style={{ color: 'var(--text-primary)', fontWeight: 600 }}>
                         STAR Method & Verbal Poise
                       </span>
                       <span
                         style={{
                           fontWeight: 700,
-                          color: '#fbbf24',
+                          color: '#b45309',
                           fontFamily: 'var(--font-code)',
                         }}
                       >
@@ -667,7 +655,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                           communication: Number(e.target.value),
                         })
                       }
-                      style={{ width: '100%', accentColor: '#fbbf24' }}
+                      style={{ width: '100%', accentColor: '#b45309' }}
                     />
                   </div>
                 </div>
@@ -710,9 +698,9 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       key={i}
                       style={{
                         padding: '0.55rem 0.75rem',
-                        background: 'rgba(255, 255, 255, 0.03)',
+                        background: '#ffffff',
                         borderRadius: 'var(--radius-sm)',
-                        border: '1px solid rgba(255, 255, 255, 0.05)',
+                        border: '1px solid var(--border-subtle)',
                         fontSize: '0.78rem',
                       }}
                     >
@@ -720,14 +708,14 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                         style={{
                           display: 'flex',
                           justifyContent: 'space-between',
-                          color: '#38bdf8',
-                          fontWeight: 600,
+                          color: 'var(--burgundy-accent)',
+                          fontWeight: 700,
                           marginBottom: '0.15rem',
                           fontFamily: 'var(--font-code)',
                         }}
                       >
                         <span>{n.time}</span>
-                        <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem' }}>
+                        <span style={{ color: 'var(--text-muted)', fontSize: '0.7rem', fontWeight: 500 }}>
                           {n.author}
                         </span>
                       </div>
@@ -750,8 +738,8 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                     onChange={(e) => setNewNote(e.target.value)}
                     style={{
                       flexGrow: 1,
-                      background: 'rgba(15, 23, 42, 0.9)',
-                      border: '1px solid var(--border-subtle)',
+                      background: '#ffffff',
+                      border: '1px solid var(--border-medium)',
                       borderRadius: 'var(--radius-sm)',
                       padding: '0.45rem 0.75rem',
                       fontSize: '0.78rem',
@@ -762,7 +750,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                   <button
                     type="submit"
                     style={{
-                      background: 'var(--cyan-primary)',
+                      background: 'var(--burgundy-accent)',
                       border: 'none',
                       borderRadius: 'var(--radius-sm)',
                       color: '#fff',
@@ -779,12 +767,12 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
               </div>
             </div>
 
-            {/* Right Column: Problem Prompt & Interactive Code Editor */}
+            {/* Right Column: Problem Prompt & Clean Light Code Editor */}
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                background: '#070a13',
+                background: '#ffffff',
               }}
             >
               {/* Problem Prompt Header */}
@@ -792,7 +780,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                 style={{
                   padding: '1.2rem 1.6rem',
                   borderBottom: '1px solid var(--border-subtle)',
-                  background: 'rgba(15, 23, 42, 0.5)',
+                  background: '#fdfafb',
                 }}
               >
                 <div
@@ -809,8 +797,9 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       fontWeight: 700,
                       padding: '0.15rem 0.55rem',
                       borderRadius: 'var(--radius-full)',
-                      background: 'rgba(129, 140, 248, 0.2)',
-                      color: '#a5b4fc',
+                      background: 'var(--burgundy-soft)',
+                      color: 'var(--burgundy-accent)',
+                      border: '1px solid var(--burgundy-border)',
                     }}
                   >
                     {currentQuestion.category}
@@ -821,8 +810,9 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       fontWeight: 700,
                       padding: '0.15rem 0.55rem',
                       borderRadius: 'var(--radius-full)',
-                      background: 'rgba(56, 189, 248, 0.15)',
-                      color: '#38bdf8',
+                      background: '#f3f4f6',
+                      color: 'var(--text-heading)',
+                      border: '1px solid #e5e7eb',
                     }}
                   >
                     Target: {currentQuestion.difficulty}
@@ -832,7 +822,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                   style={{
                     fontSize: '1.15rem',
                     fontWeight: 700,
-                    color: 'var(--text-primary)',
+                    color: 'var(--text-heading)',
                     marginBottom: '0.4rem',
                   }}
                 >
@@ -850,7 +840,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                 </p>
               </div>
 
-              {/* Code Editor Window */}
+              {/* Code Editor Window - Crisp Light IDE */}
               <div
                 style={{
                   display: 'flex',
@@ -862,8 +852,8 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                 <div
                   style={{
                     padding: '0.5rem 1.6rem',
-                    background: '#090d18',
-                    borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+                    background: '#f8f6f7',
+                    borderBottom: '1px solid var(--border-subtle)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -874,6 +864,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                       fontFamily: 'var(--font-code)',
                       fontSize: '0.78rem',
                       color: 'var(--text-muted)',
+                      fontWeight: 600,
                     }}
                   >
                     Solution.{selectedLanguage === 'javascript' ? 'js' : selectedLanguage === 'python' ? 'py' : 'java'}
@@ -881,8 +872,8 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                   <span
                     style={{
                       fontSize: '0.75rem',
-                      color: '#34d399',
-                      fontWeight: 600,
+                      color: '#059669',
+                      fontWeight: 700,
                     }}
                   >
                     ● Auto-syncing to evaluator terminal
@@ -897,8 +888,8 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                     flexGrow: 1,
                     width: '100%',
                     minHeight: '260px',
-                    backgroundColor: 'transparent',
-                    color: '#e2e8f0',
+                    backgroundColor: '#ffffff',
+                    color: '#18181b',
                     fontFamily: 'var(--font-code)',
                     fontSize: '0.85rem',
                     lineHeight: 1.6,
@@ -915,11 +906,11 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                   <div
                     style={{
                       padding: '1rem 1.6rem',
-                      background: 'rgba(5, 8, 16, 0.95)',
+                      background: '#faf8f9',
                       borderTop: '1px solid var(--border-subtle)',
                       fontFamily: 'var(--font-code)',
                       fontSize: '0.8rem',
-                      color: '#34d399',
+                      color: '#065f46',
                       whiteSpace: 'pre-wrap',
                       maxHeight: '140px',
                       overflowY: 'auto',
@@ -933,7 +924,7 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                 <div
                   style={{
                     padding: '0.85rem 1.6rem',
-                    background: 'rgba(15, 23, 42, 0.85)',
+                    background: '#fdfafb',
                     borderTop: '1px solid var(--border-subtle)',
                     display: 'flex',
                     alignItems: 'center',
@@ -944,10 +935,11 @@ export default function MockSimulator({ onOpenScorecard }: MockSimulatorProps) {
                     <span
                       style={{
                         fontSize: '0.78rem',
-                        color: 'var(--text-muted)',
+                        color: 'var(--text-secondary)',
                       }}
                     >
-                      Time Complexity Target: <strong style={{ color: '#38bdf8' }}>O(N)</strong>
+                      Time Complexity Target:{' '}
+                      <strong style={{ color: 'var(--burgundy-accent)' }}>O(N)</strong>
                     </span>
                   </div>
 

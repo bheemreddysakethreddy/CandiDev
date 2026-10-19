@@ -3,26 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import {
   Code2,
-  Cpu,
-  BarChart2,
-  Calculator,
   Calendar,
   Menu,
   X,
   Sparkles,
-  ShieldCheck,
-  CheckCircle2,
 } from 'lucide-react';
 
 interface NavbarProps {
   onOpenBooking: () => void;
-  onNavigateToSimulator: () => void;
   onNavigateToDashboard: () => void;
 }
 
 export default function Navbar({
   onOpenBooking,
-  onNavigateToSimulator,
   onNavigateToDashboard,
 }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,13 +30,14 @@ export default function Navbar({
   }, []);
 
   const navLinks = [
-    { name: 'Services', href: '#services' },
-    { name: 'Why CandiDev', href: '#why-us' },
-    { name: 'Live Simulator', href: '#simulator', action: onNavigateToSimulator },
-    { name: 'Institute Portal', href: '#portal', action: onNavigateToDashboard },
-    { name: 'ROI Calculator', href: '#calculator' },
-    { name: 'Comparison', href: '#comparison' },
-    { name: 'FAQs', href: '#faqs' },
+    { name: 'Who We Are', href: '#who-we-are' },
+    { name: 'What We Can Do', href: '#what-we-can-do' },
+    { name: 'Mock Types', href: '#mock-types' },
+    { name: 'Impact & Results', href: '#helpful-impact' },
+    { name: 'Colleges Tied Up', href: '#colleges' },
+    { name: 'Our Flow', href: '#our-flow' },
+    { name: 'Why Choose Us', href: '#why-choose-us' },
+    { name: 'Connect', href: '#connect-channels' },
   ];
 
   return (
@@ -54,16 +48,17 @@ export default function Navbar({
         left: 0,
         right: 0,
         zIndex: 900,
-        transition: 'all 0.3s ease',
+        transition: 'all 0.25s ease',
         background: isScrolled
-          ? 'rgba(7, 9, 19, 0.88)'
-          : 'rgba(7, 9, 19, 0.4)',
-        backdropFilter: 'blur(16px)',
-        WebkitBackdropFilter: 'blur(16px)',
+          ? 'rgba(255, 255, 255, 0.98)'
+          : 'rgba(250, 248, 249, 0.92)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         borderBottom: isScrolled
-          ? '1px solid rgba(255, 255, 255, 0.09)'
+          ? '1px solid var(--border-medium)'
           : '1px solid transparent',
-        padding: isScrolled ? '0.75rem 0' : '1.1rem 0',
+        padding: isScrolled ? '0.7rem 0' : '1rem 0',
+        boxShadow: isScrolled ? 'var(--shadow-sm)' : 'none',
       }}
     >
       <div
@@ -88,15 +83,14 @@ export default function Navbar({
             style={{
               width: '38px',
               height: '38px',
-              borderRadius: '10px',
-              background: 'linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #6366f1 100%)',
+              borderRadius: '9px',
+              background: 'var(--burgundy-accent)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              boxShadow: '0 0 16px rgba(6, 182, 212, 0.5)',
             }}
           >
-            <Code2 size={22} color="#ffffff" strokeWidth={2.5} />
+            <Code2 size={22} color="#ffffff" strokeWidth={2.3} />
           </div>
           <div>
             <span
@@ -104,18 +98,16 @@ export default function Navbar({
                 fontSize: '1.35rem',
                 fontWeight: 800,
                 letterSpacing: '-0.02em',
-                background: 'linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
+                color: 'var(--text-heading)',
               }}
             >
-              Candi<span style={{ color: '#38bdf8', WebkitTextFillColor: '#38bdf8' }}>Dev</span>
+              Candi<span style={{ color: 'var(--burgundy-accent)' }}>Dev</span>
             </span>
             <div
               style={{
                 fontSize: '0.65rem',
-                color: 'var(--cyan-glow)',
-                fontWeight: 600,
+                color: 'var(--burgundy-accent)',
+                fontWeight: 700,
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 marginTop: '-3px',
@@ -131,7 +123,7 @@ export default function Navbar({
           style={{
             display: 'none',
             alignItems: 'center',
-            gap: '1.8rem',
+            gap: '1.25rem',
           }}
           className="desktop-nav"
         >
@@ -139,31 +131,20 @@ export default function Navbar({
             <a
               key={link.name}
               href={link.href}
-              onClick={(e) => {
-                if (link.action) {
-                  e.preventDefault();
-                  link.action();
-                }
-              }}
               style={{
-                fontSize: '0.9rem',
-                fontWeight: 500,
+                fontSize: '0.84rem',
+                fontWeight: 600,
                 color: 'var(--text-secondary)',
-                transition: 'color 0.2s',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.35rem',
+                transition: 'color 0.15s ease',
+                textDecoration: 'none',
               }}
               onMouseEnter={(e) =>
-                (e.currentTarget.style.color = 'var(--text-primary)')
+                (e.currentTarget.style.color = 'var(--burgundy-accent)')
               }
               onMouseLeave={(e) =>
                 (e.currentTarget.style.color = 'var(--text-secondary)')
               }
             >
-              {link.name === 'Live Simulator' && (
-                <span className="pulse-green" style={{ width: 6, height: 6 }} />
-              )}
               {link.name}
             </a>
           ))}
@@ -174,19 +155,20 @@ export default function Navbar({
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: '1rem',
+            gap: '0.8rem',
           }}
         >
           <button
             onClick={onOpenBooking}
             className="btn-primary"
             style={{
-              padding: '0.65rem 1.3rem',
-              fontSize: '0.88rem',
+              padding: '0.6rem 1.25rem',
+              fontSize: '0.86rem',
+              borderRadius: 'var(--radius-sm)',
             }}
           >
-            <Calendar size={16} />
-            <span>Book Institute Pilot</span>
+            <Calendar size={15} />
+            <span>Book a Session</span>
           </button>
 
           {/* Mobile hamburger toggle */}
@@ -197,12 +179,12 @@ export default function Navbar({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid var(--border-subtle)',
+              background: '#ffffff',
+              border: '1px solid var(--border-medium)',
               borderRadius: '8px',
               color: 'var(--text-primary)',
-              width: '40px',
-              height: '40px',
+              width: '38px',
+              height: '38px',
               cursor: 'pointer',
             }}
             className="mobile-toggle"
@@ -216,31 +198,29 @@ export default function Navbar({
       {mobileMenuOpen && (
         <div
           style={{
-            background: 'rgba(11, 15, 27, 0.98)',
+            background: '#ffffff',
             borderBottom: '1px solid var(--border-subtle)',
-            padding: '1.5rem',
+            padding: '1.2rem 1.5rem',
             display: 'flex',
             flexDirection: 'column',
-            gap: '1.2rem',
+            gap: '0.8rem',
+            boxShadow: 'var(--shadow-md)',
           }}
         >
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              onClick={(e) => {
+              onClick={() => {
                 setMobileMenuOpen(false);
-                if (link.action) {
-                  e.preventDefault();
-                  link.action();
-                }
               }}
               style={{
-                fontSize: '1rem',
+                fontSize: '0.94rem',
                 fontWeight: 600,
                 color: 'var(--text-primary)',
-                padding: '0.5rem 0',
-                borderBottom: '1px solid rgba(255,255,255,0.05)',
+                padding: '0.45rem 0',
+                borderBottom: '1px solid var(--border-subtle)',
+                textDecoration: 'none',
               }}
             >
               {link.name}
@@ -252,16 +232,16 @@ export default function Navbar({
               onOpenBooking();
             }}
             className="btn-primary"
-            style={{ width: '100%', marginTop: '0.5rem' }}
+            style={{ width: '100%', marginTop: '0.6rem', padding: '0.7rem' }}
           >
             <Calendar size={16} />
-            Book Institute Pilot
+            <span>Book a Session</span>
           </button>
         </div>
       )}
 
       <style jsx>{`
-        @media (min-width: 900px) {
+        @media (min-width: 1080px) {
           .desktop-nav {
             display: flex !important;
           }

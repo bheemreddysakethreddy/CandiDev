@@ -6,7 +6,6 @@ import {
   Award,
   CheckCircle2,
   Clock,
-  Sparkles,
   ShieldCheck,
 } from 'lucide-react';
 
@@ -23,22 +22,22 @@ export default function StatsRibbon() {
 
   const valueProps = [
     {
-      icon: <Award size={18} color="#38bdf8" />,
+      icon: <Award size={18} color="var(--burgundy-accent)" />,
       title: 'FAANG & Tier-1 Lead Interviewers',
       desc: 'Active corporate software leaders with 5+ yrs experience',
     },
     {
-      icon: <CheckCircle2 size={18} color="#34d399" />,
+      icon: <CheckCircle2 size={18} color="#059669" />,
       title: 'Standardized 10-Point Corporate Rubric',
       desc: 'Zero subjective bias; measured against exact hiring thresholds',
     },
     {
-      icon: <Clock size={18} color="#fbbf24" />,
+      icon: <Clock size={18} color="#b45309" />,
       title: '2-Hour Diagnostic Report Turnaround',
       desc: 'Instant video replay, timestamped logs & 14-day action plans',
     },
     {
-      icon: <ShieldCheck size={18} color="#a78bfa" />,
+      icon: <ShieldCheck size={18} color="var(--burgundy-accent)" />,
       title: 'Verified Corporate Competency Badges',
       desc: 'Cryptographic credentials trusted by 70+ hiring companies',
     },
@@ -49,18 +48,17 @@ export default function StatsRibbon() {
       style={{
         borderTop: '1px solid var(--border-subtle)',
         borderBottom: '1px solid var(--border-subtle)',
-        background: 'rgba(11, 16, 29, 0.6)',
-        backdropFilter: 'blur(10px)',
+        background: '#ffffff',
         padding: '2.5rem 0',
       }}
     >
       <div className="container">
-        {/* Partner Institutes Ticker / Strip */}
+        {/* Partner Institutes Strip */}
         <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <p
             style={{
               fontSize: '0.8rem',
-              fontWeight: 600,
+              fontWeight: 700,
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               color: 'var(--text-muted)',
@@ -76,7 +74,6 @@ export default function StatsRibbon() {
               alignItems: 'center',
               justifyContent: 'center',
               gap: '2.2rem',
-              opacity: 0.85,
             }}
           >
             {partnerInstitutes.map((name) => (
@@ -86,12 +83,12 @@ export default function StatsRibbon() {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  fontSize: '0.95rem',
+                  fontSize: '0.92rem',
                   fontWeight: 600,
-                  color: 'var(--text-secondary)',
+                  color: 'var(--text-primary)',
                 }}
               >
-                <Building2 size={16} color="#38bdf8" />
+                <Building2 size={16} color="var(--burgundy-accent)" />
                 <span>{name}</span>
               </div>
             ))}
@@ -105,7 +102,7 @@ export default function StatsRibbon() {
             gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
             gap: '1.5rem',
             paddingTop: '1.5rem',
-            borderTop: '1px solid rgba(255, 255, 255, 0.05)',
+            borderTop: '1px solid var(--border-subtle)',
           }}
         >
           {valueProps.map((item, idx) => (
@@ -120,9 +117,9 @@ export default function StatsRibbon() {
               <div
                 style={{
                   padding: '0.55rem',
-                  background: 'rgba(255, 255, 255, 0.04)',
-                  borderRadius: '10px',
-                  border: '1px solid var(--border-subtle)',
+                  background: 'var(--burgundy-soft)',
+                  borderRadius: '8px',
+                  border: '1px solid var(--burgundy-border)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -136,7 +133,7 @@ export default function StatsRibbon() {
                   style={{
                     fontSize: '0.92rem',
                     fontWeight: 700,
-                    color: 'var(--text-primary)',
+                    color: 'var(--text-heading)',
                     marginBottom: '0.2rem',
                   }}
                 >

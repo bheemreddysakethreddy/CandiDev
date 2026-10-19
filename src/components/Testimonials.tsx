@@ -1,16 +1,16 @@
 'use client';
 
 import React from 'react';
-import { Quote, Star, Award, TrendingUp, Building } from 'lucide-react';
+import { Star, Award } from 'lucide-react';
 import { TESTIMONIALS } from '@/data/mockData';
 
 export default function Testimonials() {
   return (
-    <section className="section" style={{ position: 'relative' }}>
+    <section className="section" style={{ backgroundColor: 'var(--bg-primary)' }}>
       <div className="container">
         <div className="section-header">
           <div className="section-tag">
-            <Award size={14} />
+            <Award size={14} color="var(--burgundy-accent)" />
             <span>Institute Success Stories</span>
           </div>
           <h2 className="section-title">
@@ -36,6 +36,7 @@ export default function Testimonials() {
               className="glass-card"
               style={{
                 padding: '2.2rem',
+                background: '#ffffff',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
@@ -53,7 +54,7 @@ export default function Testimonials() {
                 >
                   <div style={{ display: 'flex', gap: '3px' }}>
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} size={16} fill="#fbbf24" color="#fbbf24" />
+                      <Star key={i} size={16} fill="#d97706" color="#d97706" />
                     ))}
                   </div>
 
@@ -61,11 +62,11 @@ export default function Testimonials() {
                     style={{
                       fontSize: '0.75rem',
                       fontWeight: 700,
-                      color: '#34d399',
-                      background: 'rgba(16, 185, 129, 0.12)',
-                      padding: '0.2rem 0.6rem',
+                      color: 'var(--burgundy-accent)',
+                      background: 'var(--burgundy-soft)',
+                      padding: '0.2rem 0.65rem',
                       borderRadius: 'var(--radius-full)',
-                      border: '1px solid rgba(16, 185, 129, 0.25)',
+                      border: '1px solid var(--burgundy-border)',
                     }}
                   >
                     {t.stats}
@@ -93,7 +94,7 @@ export default function Testimonials() {
                   alignItems: 'center',
                   gap: '0.85rem',
                   paddingTop: '1.2rem',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                  borderTop: '1px solid var(--border-subtle)',
                 }}
               >
                 <img
@@ -104,7 +105,7 @@ export default function Testimonials() {
                     height: '46px',
                     borderRadius: '50%',
                     objectFit: 'cover',
-                    border: '2px solid var(--border-accent)',
+                    border: '2px solid var(--burgundy-border)',
                   }}
                 />
                 <div>
@@ -112,12 +113,12 @@ export default function Testimonials() {
                     style={{
                       fontSize: '0.95rem',
                       fontWeight: 700,
-                      color: '#ffffff',
+                      color: 'var(--text-heading)',
                     }}
                   >
                     {t.author}
                   </h4>
-                  <div style={{ fontSize: '0.8rem', color: '#38bdf8' }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--burgundy-accent)', fontWeight: 600 }}>
                     {t.role}
                   </div>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>

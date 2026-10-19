@@ -3,23 +3,20 @@
 import React, { useState } from 'react';
 import {
   Code2,
-  Mail,
   ShieldCheck,
   Award,
   CheckCircle2,
   ArrowRight,
-  Heart,
+  MessageSquare,
 } from 'lucide-react';
 
 interface FooterProps {
   onOpenBooking: () => void;
-  onNavigateToSimulator: () => void;
   onNavigateToDashboard: () => void;
 }
 
 export default function Footer({
   onOpenBooking,
-  onNavigateToSimulator,
   onNavigateToDashboard,
 }: FooterProps) {
   const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -37,25 +34,23 @@ export default function Footer({
   return (
     <footer
       style={{
-        borderTop: '1px solid var(--border-subtle)',
-        background: '#04060d',
+        borderTop: '1px solid var(--border-medium)',
+        background: '#faf8f9',
         padding: '5rem 0 2.5rem',
         position: 'relative',
-        overflow: 'hidden',
       }}
     >
       <div className="container">
         {/* Top CTA Banner */}
         <div
           style={{
-            background:
-              'linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(99, 102, 241, 0.12) 100%)',
-            border: '1px solid var(--border-accent)',
+            background: 'var(--burgundy-soft)',
+            border: '1px solid var(--burgundy-border)',
             borderRadius: 'var(--radius-xl)',
             padding: '3rem 2.5rem',
             textAlign: 'center',
             marginBottom: '4.5rem',
-            boxShadow: 'var(--shadow-glow-cyan)',
+            boxShadow: 'var(--shadow-sm)',
           }}
         >
           <div
@@ -63,7 +58,7 @@ export default function Footer({
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.4rem',
-              color: '#38bdf8',
+              color: 'var(--burgundy-accent)',
               fontSize: '0.8rem',
               fontWeight: 700,
               textTransform: 'uppercase',
@@ -72,14 +67,14 @@ export default function Footer({
             }}
           >
             <Award size={15} />
-            <span>Ready for the 2026 Campus Hiring Season?</span>
+            <span>Ready for the 2026 Corporate Campus Hiring Season?</span>
           </div>
 
           <h2
             style={{
               fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)',
               fontWeight: 800,
-              color: '#ffffff',
+              color: 'var(--text-heading)',
               marginBottom: '1rem',
             }}
           >
@@ -95,7 +90,7 @@ export default function Footer({
               lineHeight: 1.6,
             }}
           >
-            Book a 15-student pilot batch with CandiDev today. Receive complete 10-parameter
+            Book a 1-on-1 session or launch a 15-student pilot batch with CandiDev today. Receive complete 10-parameter
             diagnostic reports and watch your cohort placement rate jump by 35–60%.
           </p>
 
@@ -113,15 +108,15 @@ export default function Footer({
               className="btn-primary"
               style={{ padding: '0.85rem 2rem', fontSize: '1rem' }}
             >
-              <span>Schedule Institute Pilot Batch</span>
+              <span>Book a Session Now</span>
               <ArrowRight size={17} />
             </button>
             <button
-              onClick={onNavigateToSimulator}
+              onClick={onNavigateToDashboard}
               className="btn-secondary"
               style={{ padding: '0.85rem 2rem', fontSize: '1rem' }}
             >
-              <span>Test Interactive Simulator</span>
+              <span>Explore Institute Command Center</span>
             </button>
           </div>
         </div>
@@ -149,17 +144,17 @@ export default function Footer({
                 style={{
                   width: '36px',
                   height: '36px',
-                  borderRadius: '10px',
-                  background: 'linear-gradient(135deg, #06b6d4, #6366f1)',
+                  borderRadius: '9px',
+                  background: 'var(--burgundy-accent)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
-                <Code2 size={20} color="#ffffff" strokeWidth={2.5} />
+                <Code2 size={20} color="#ffffff" strokeWidth={2.3} />
               </div>
-              <span style={{ fontSize: '1.4rem', fontWeight: 800, color: '#ffffff' }}>
-                Candi<span style={{ color: '#38bdf8' }}>Dev</span>
+              <span style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-heading)' }}>
+                Candi<span style={{ color: 'var(--burgundy-accent)' }}>Dev</span>
               </span>
             </div>
             <p
@@ -170,28 +165,27 @@ export default function Footer({
                 marginBottom: '1.2rem',
               }}
             >
-              The premier Corporate Mock Interview & Technical Assessment Engine for Training
-              Institutes, EdTechs, and Bootcamps. Helping students clear Tier-1 software engineering
-              bars.
+              The premier Corporate Mock Interview & Technical Assessment Engine for Colleges,
+              Bootcamps, and Software Engineers. Helping candidates clear Tier-1 corporate engineering bars.
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#34d399', fontSize: '0.8rem', fontWeight: 600 }}>
-              <ShieldCheck size={16} /> ISO 27001 Certified Evaluation Standards
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#059669', fontSize: '0.8rem', fontWeight: 600 }}>
+              <ShieldCheck size={16} /> Standardized Corporate Hiring Bar
             </div>
           </div>
 
-          {/* Col 2: Services & Tracks */}
+          {/* Col 2: Core Platform Navigation */}
           <div>
             <h4
               style={{
                 fontSize: '0.9rem',
                 fontWeight: 700,
-                color: '#ffffff',
+                color: 'var(--text-heading)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 marginBottom: '1.2rem',
               }}
             >
-              Service Tracks
+              Core Navigation
             </h4>
             <ul
               style={{
@@ -204,51 +198,56 @@ export default function Footer({
               }}
             >
               <li>
-                <a href="#services" style={{ color: 'inherit' }}>
-                  Full Stack MERN & Web Architecture
+                <a href="#who-we-are" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  Who Are We
                 </a>
               </li>
               <li>
-                <a href="#services" style={{ color: 'inherit' }}>
-                  Backend Java & Spring Boot Microservices
+                <a href="#what-we-can-do" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  What We Can Do
                 </a>
               </li>
               <li>
-                <a href="#services" style={{ color: 'inherit' }}>
-                  DSA & Algorithmic Problem Solving
+                <a href="#mock-types" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  What Kind of Mocks We Can Take
                 </a>
               </li>
               <li>
-                <a href="#services" style={{ color: 'inherit' }}>
-                  Corporate Behavioral & STAR Articulation
+                <a href="#helpful-impact" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  How Many Found Us Helpful
                 </a>
               </li>
               <li>
-                <a href="#services" style={{ color: 'inherit' }}>
-                  DevOps, Cloud Native & Docker Drills
+                <a href="#colleges" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  Which Colleges Tied Up With Us
                 </a>
               </li>
               <li>
-                <a href="#services" style={{ color: 'inherit' }}>
-                  Data Science & Applied ML Rounds
+                <a href="#our-flow" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  What Kind of Flow We Follow
+                </a>
+              </li>
+              <li>
+                <a href="#why-choose-us" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  Why Should You Choose Us
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Col 3: Institute Portal */}
+          {/* Col 3: Direct Connect & Channels */}
           <div>
             <h4
               style={{
                 fontSize: '0.9rem',
                 fontWeight: 700,
-                color: '#ffffff',
+                color: 'var(--text-heading)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 marginBottom: '1.2rem',
               }}
             >
-              Institute Solutions
+              Connect Channels
             </h4>
             <ul
               style={{
@@ -261,28 +260,51 @@ export default function Footer({
               }}
             >
               <li>
-                <a href="#portal" onClick={(e) => { e.preventDefault(); onNavigateToDashboard(); }}>
-                  Placement Director Dashboard
+                <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" style={{ color: '#059669', fontWeight: 600, textDecoration: 'none' }}>
+                  💬 WhatsApp: +91 98765 43210
                 </a>
               </li>
               <li>
-                <a href="#simulator" onClick={(e) => { e.preventDefault(); onNavigateToSimulator(); }}>
-                  Interactive Live Mock Simulator
+                <a href="https://discord.gg/candidev" target="_blank" rel="noopener noreferrer" style={{ color: '#5865F2', fontWeight: 600, textDecoration: 'none' }}>
+                  🎮 Discord (25K+ Dev Community)
                 </a>
               </li>
               <li>
-                <a href="#calculator">Cohort ROI & Pricing Estimator</a>
-              </li>
-              <li>
-                <a href="#comparison">Traditional Mocks vs CandiDev</a>
-              </li>
-              <li>
-                <a href="#faqs">Frequently Asked Questions</a>
-              </li>
-              <li>
-                <a href="#" onClick={(e) => { e.preventDefault(); onOpenBooking(); }}>
-                  Book Institute Pilot Batch
+                <a href="https://linkedin.com/company/candidev" target="_blank" rel="noopener noreferrer" style={{ color: '#0A66C2', fontWeight: 600, textDecoration: 'none' }}>
+                  💼 LinkedIn Official Page
                 </a>
+              </li>
+              <li>
+                <a href="https://t.me/candidev_prep" target="_blank" rel="noopener noreferrer" style={{ color: '#229ED9', fontWeight: 600, textDecoration: 'none' }}>
+                  ✈️ Telegram DSA & Jobs Channel
+                </a>
+              </li>
+              <li>
+                <a href="mailto:students@candidev.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  ✉️ students@candidev.com
+                </a>
+              </li>
+              <li>
+                <a href="mailto:placements@candidev.com" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  🏫 placements@candidev.com
+                </a>
+              </li>
+              <li>
+                <button
+                  onClick={onOpenBooking}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    color: 'var(--burgundy-accent)',
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    padding: 0,
+                    fontSize: '0.88rem',
+                    textAlign: 'left',
+                  }}
+                >
+                  ⚡ Open Session Booking Modal
+                </button>
               </li>
             </ul>
           </div>
@@ -293,13 +315,13 @@ export default function Footer({
               style={{
                 fontSize: '0.9rem',
                 fontWeight: 700,
-                color: '#ffffff',
+                color: 'var(--text-heading)',
                 textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 marginBottom: '1.2rem',
               }}
             >
-              Institute Placement Brief
+              Campus Placement Brief
             </h4>
             <p
               style={{
@@ -322,12 +344,12 @@ export default function Footer({
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 style={{
                   flexGrow: 1,
-                  background: 'rgba(15, 23, 42, 0.8)',
-                  border: '1px solid var(--border-subtle)',
+                  background: '#ffffff',
+                  border: '1px solid var(--border-medium)',
                   borderRadius: 'var(--radius-sm)',
                   padding: '0.55rem 0.8rem',
                   fontSize: '0.82rem',
-                  color: '#ffffff',
+                  color: 'var(--text-primary)',
                   outline: 'none',
                 }}
               />
@@ -345,10 +367,11 @@ export default function Footer({
                 style={{
                   marginTop: '0.6rem',
                   fontSize: '0.78rem',
-                  color: '#34d399',
+                  color: '#059669',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.3rem',
+                  fontWeight: 600,
                 }}
               >
                 <CheckCircle2 size={13} /> Subscribed to Placement Brief!
@@ -361,7 +384,7 @@ export default function Footer({
         <div
           style={{
             paddingTop: '2rem',
-            borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+            borderTop: '1px solid var(--border-subtle)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -373,16 +396,16 @@ export default function Footer({
         >
           <div>
             © 2026 CandiDev Inc. All rights reserved. Specialized Corporate
-            Mock Partner for Training Institutes.
+            Mock Partner for Universities & Engineers.
           </div>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
-            <a href="#" style={{ color: 'inherit' }}>
+            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>
               Privacy Policy
             </a>
-            <a href="#" style={{ color: 'inherit' }}>
+            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>
               Terms of Service
             </a>
-            <a href="#" style={{ color: 'inherit' }}>
+            <a href="#" style={{ color: 'inherit', textDecoration: 'none' }}>
               Hiring Partner SLA
             </a>
           </div>
